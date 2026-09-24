@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ripplepelectricals.co.ke/sitemap.xml
