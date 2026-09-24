@@ -1,0 +1,37 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE066" />
+      <stop offset="50%" stop-color="#F5B800" />
+      <stop offset="100%" stop-color="#D69200" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F5B800" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#111111" stop-opacity="0" />
+    </radialGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background container -->
+  <rect width="512" height="512" rx="112" fill="#111111" />
+  
+  <!-- Subtle ambient radial gold glow -->
+  <circle cx="256" cy="256" r="230" fill="url(#glowGrad)" />
+
+  <!-- Concentric electrical ripple wave rings -->
+  <circle cx="256" cy="256" r="195" fill="none" stroke="url(#goldGrad)" stroke-width="8" opacity="0.85" filter="url(#goldGlow)" />
+  <circle cx="256" cy="256" r="150" fill="none" stroke="url(#goldGrad)" stroke-width="6" opacity="0.55" />
+  <circle cx="256" cy="256" r="105" fill="none" stroke="url(#goldGrad)" stroke-width="4" opacity="0.3" />
+
+  <!-- Stylized Luxury "P" Monogram -->
+  <g filter="url(#goldGlow)">
+    <!-- Main P Stem and Curve -->
+    <path d="M 195 385 C 190 385 185 380 185 375 L 185 155 C 185 142 195 132 208 132 L 285 132 C 342 132 380 168 380 220 C 380 272 342 308 285 308 L 235 308 L 235 375 C 235 380 230 385 225 385 Z M 235 178 L 235 262 L 280 262 C 314 262 336 245 336 220 C 336 195 314 178 280 178 Z" fill="url(#goldGrad)" />
+    
+    <!-- Central Lightning Energy Symbol in P Counter -->
+    <polygon points="280,188 266,220 286,220 272,254 300,214 282,214" fill="#FFFFFF" opacity="0.95" />
+  </g>
+</svg>
