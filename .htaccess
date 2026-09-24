@@ -1,0 +1,32 @@
+﻿# Ripple P Electricals - Security & Hardening Configuration
+
+# 1. Force HTTPS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# 2. Disable Directory Browsing
+Options -Indexes
+
+# 3. Block Access to Hidden / Sensitive Files & Git
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op]|tmp|yaml|yml))$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 4. HTTP Security Headers
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://images.unsplash.com https://ripplepelectricals.co.ke; connect-src 'self' https://wa.me; frame-ancestors 'self';"
+</IfModule>
