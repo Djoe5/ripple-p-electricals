@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -1469,22 +1469,50 @@
             `;
         }
 
-        // Anti-Bot Form Handlers (Honeypot + Direct WhatsApp Conversion)
+        // Data Validation & Input Sanitization
+        function sanitizeInput(str, maxLength = 500) {
+            if (!str || typeof str !== 'string') return '';
+            return str
+                .slice(0, maxLength)
+                .replace(/[<>]/g, '') // Strip potential markup tags
+                .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Strip ASCII control characters
+                .trim();
+        }
+
+        // Rate Limiting Protection (Client-side flood control)
+        let lastSubmissionTime = 0;
+        const SUBMISSION_COOLDOWN_MS = 8000; // 8 seconds cooldown between submissions
+
+        function isRateLimited() {
+            const now = Date.now();
+            if (now - lastSubmissionTime < SUBMISSION_COOLDOWN_MS) {
+                const waitSec = Math.ceil((SUBMISSION_COOLDOWN_MS - (now - lastSubmissionTime)) / 1000);
+                alert(`Please wait ${waitSec} second(s) before sending another request.`);
+                return true;
+            }
+            lastSubmissionTime = now;
+            return false;
+        }
+
+        // Anti-Bot & Sanitized Form Handlers
         function handleWholesaleSubmit(e) {
             e.preventDefault();
+
+            // Rate limiting check
+            if (isRateLimited()) return false;
+
             // Check honeypot trap (bots fill hidden fields, humans do not)
             const trap = document.getElementById('ws-trap');
             if (trap && trap.value.trim() !== '') {
-                console.warn('Automated bot submission prevented.');
                 return false;
             }
 
-            const name = (document.getElementById('ws-name')?.value || '').trim();
-            const company = (document.getElementById('ws-company')?.value || '').trim();
-            const phone = (document.getElementById('ws-phone')?.value || '').trim();
-            const email = (document.getElementById('ws-email')?.value || '').trim();
-            const type = (document.getElementById('ws-type')?.value || '').trim();
-            const products = (document.getElementById('ws-products')?.value || '').trim();
+            const name = sanitizeInput(document.getElementById('ws-name')?.value, 100);
+            const company = sanitizeInput(document.getElementById('ws-company')?.value, 100);
+            const phone = sanitizeInput(document.getElementById('ws-phone')?.value, 30);
+            const email = sanitizeInput(document.getElementById('ws-email')?.value, 100);
+            const type = sanitizeInput(document.getElementById('ws-type')?.value, 100);
+            const products = sanitizeInput(document.getElementById('ws-products')?.value, 1000);
 
             if (!name || !phone || !products) {
                 alert('Please complete all required fields (*).');
@@ -1496,7 +1524,7 @@
             if (company) msg += `• Company: ${company}\n`;
             msg += `• Phone: ${phone}\n`;
             if (email) msg += `• Email: ${email}\n`;
-            msg += `• Category: ${type}\n`;
+            if (type) msg += `• Category: ${type}\n`;
             msg += `• Requirements:\n${products}\n`;
 
             const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
@@ -1506,17 +1534,20 @@
 
         function handleContactSubmit(e) {
             e.preventDefault();
+
+            // Rate limiting check
+            if (isRateLimited()) return false;
+
             // Check honeypot trap
             const trap = document.getElementById('contact-trap');
             if (trap && trap.value.trim() !== '') {
-                console.warn('Automated bot submission prevented.');
                 return false;
             }
 
-            const name = (document.getElementById('contact-name')?.value || '').trim();
-            const phone = (document.getElementById('contact-phone')?.value || '').trim();
-            const email = (document.getElementById('contact-email')?.value || '').trim();
-            const message = (document.getElementById('contact-msg')?.value || '').trim();
+            const name = sanitizeInput(document.getElementById('contact-name')?.value, 100);
+            const phone = sanitizeInput(document.getElementById('contact-phone')?.value, 30);
+            const email = sanitizeInput(document.getElementById('contact-email')?.value, 100);
+            const message = sanitizeInput(document.getElementById('contact-msg')?.value, 1000);
 
             if (!name || !phone || !message) {
                 alert('Please complete all required fields (*).');

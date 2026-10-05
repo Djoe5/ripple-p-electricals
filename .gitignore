@@ -3,6 +3,19 @@
 *.tmp
 *~
 
+# Environment variables & secrets
+.env
+.env.*
+*.key
+*.pem
+*.cert
+*.log
+
+# Dependencies & Build artifacts
+node_modules/
+dist/
+build/
+
 # Raw photo backups
 photos/_backup_originals/
 
