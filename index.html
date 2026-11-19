@@ -1,109 +1,118 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ripple P Electricals (Three P Electricals) | Lighting &amp; Electricals Kenya</title>
-    <meta name="description" content="Ripple P Electricals (also known as Three P Electricals / 3P Electricals) on Duruma Road, Nyamakima, Nairobi. Premium chandeliers, switches, sockets, track lights, and electrical supplies.">
-    <meta name="keywords" content="Ripple P Electricals, Three P Electricals, 3P Electricals, Three P Limited, lighting Kenya, electrical products Kenya, LED bulbs, wholesale electricals Nairobi, switches, sockets, chandeliers, Duruma road electricals">
+    <title>Ripple P Electricals | Architectural Lighting & Electrical Showroom Nairobi</title>
+    <meta name="description" content="Ripple P Electricals (Three P Limited) on Duruma Road, Nyamakima, Nairobi. Importer of luxury crystal chandeliers, VIP sockets & switches, magnetic track systems, and certified electrical cables.">
+    <meta name="keywords" content="Ripple P Electricals, Three P Electricals, 3P Electricals, Three P Limited, lighting Kenya, luxury chandeliers Nairobi, VIP sockets switches, magnetic track lights Kenya, wholesale electricals Duruma Road, Nyamakima">
     <meta name="google-site-verification" content="C487-8kx_FE8wVRCosEkcNUZva0-Dptduqb5R6A0-lM" />
     
     <!-- Security Headers & Policies -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://images.unsplash.com https://ripplepelectricals.co.ke; connect-src 'self' https://wa.me; frame-ancestors 'self';">
-    
-    <!-- Anti-Clickjacking Frame Buster -->
-    <script>
-        if (window.top !== window.self) {
-            window.top.location = window.self.location;
-        }
-    </script>
     
     <!-- Favicon & Brand Icons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <meta name="theme-color" content="#111111">
+    <meta name="theme-color" content="#080B10">
     
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        'rp-black': '#111111',
+                        'rp-obsidian': '#080B10',
+                        'rp-surface': '#0F141E',
+                        'rp-card': '#151C28',
                         'rp-gold': '#F5B800',
-                        'rp-gold-hover': '#D6A000',
-                        'rp-white': '#FFFFFF',
-                        'rp-grey': '#F5F5F5',
-                        'rp-dark': '#222222',
+                        'rp-gold-warm': '#E5A93C',
+                        'rp-gold-glow': 'rgba(245, 184, 0, 0.25)',
+                        'rp-accent': '#25D366',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
                     }
                 }
             }
         }
     </script>
 
+    <!-- Three.js CDN for 3D Lighting & Chandelier Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #222222;
-            background-color: #FFFFFF;
+        /* Custom glow & glass styling */
+        .glass-panel {
+            background: rgba(15, 20, 30, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
+        .glass-card {
+            background: rgba(21, 28, 40, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 184, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(245, 184, 0, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(245, 184, 0, 0.25);
+            transform: translateY(-4px);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0B3 0%, #F5B800 50%, #D48800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-glow {
+            box-shadow: 0 0 25px rgba(245, 184, 0, 0.2);
+        }
+        /* Hide scrollbars */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        .page-section {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-        
-        .page-section.active {
-            display: block;
-        }
+        /* Ambient Temperature Transitions */
+        .temp-warm { --ambient-glow: #F5B800; --ambient-filter: sepia(0.2) saturate(1.2); }
+        .temp-neutral { --ambient-glow: #FFFFFF; --ambient-filter: none; }
+        .temp-cool { --ambient-glow: #7DD3FC; --ambient-filter: hue-rotate(180deg) saturate(0.8); }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Pulse animation for live online indicator */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.4); opacity: 0; }
+            100% { transform: scale(0.95); opacity: 0; }
         }
-
-        /* Hero Image Overlay */
-        .hero-bg {
-            background-image: linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.8)), url('https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .wholesale-bg {
-            background-image: linear-gradient(rgba(17, 17, 17, 0.85), rgba(17, 17, 17, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Hide scrollbar for clean horizontal scrolling */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+        .pulse-beacon::before {
+            content: '';
+            position: absolute;
+            left: -3px; top: -3px; right: -3px; bottom: -3px;
+            border-radius: 50%;
+            background-color: #25D366;
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
         }
     </style>
+
     <!-- Canonical & SEO Meta -->
     <link rel="canonical" href="https://ripplepelectricals.co.ke/">
-    <meta property="og:title" content="Ripple P Electricals | Lighting & Electrical Products in Kenya">
-    <meta property="og:description" content="Premium lighting, chandeliers, wall brackets, track lights, and VIP switches & sockets in Nairobi, Kenya. Retail and wholesale.">
+    <meta property="og:title" content="Ripple P Electricals | Luxury Lighting Showroom Nairobi">
+    <meta property="og:description" content="Direct importers of luxury crystal chandeliers, VIP switches, magnetic track systems, and certified electricals on Duruma Road, Nyamakima, Nairobi.">
     <meta property="og:url" content="https://ripplepelectricals.co.ke/">
     <meta property="og:type" content="business.business">
     <meta property="og:image" content="https://ripplepelectricals.co.ke/photos/1.%20Chandeliers/crystal-round-gold-chandelier-rfch20055-500.jpeg">
 
-    <!-- Google Structured Data (LocalBusiness Schema) -->
+    <!-- Schema.org ElectricalStore JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -142,1548 +151,1052 @@
     }
     </script>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="bg-rp-obsidian text-gray-100 font-sans selection:bg-rp-gold selection:text-rp-obsidian min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- Top Utility Bar: Contact & Socials -->
-    <div class="bg-[#181818] text-xs text-gray-300 border-b border-gray-800 py-1.5 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-            <div class="flex items-center gap-4">
-                <span><i class="fas fa-map-marker-alt text-rp-gold mr-1.5"></i> Duruma Road, Nyamakima, Nairobi</span>
-                <span class="hidden sm:inline"><i class="fas fa-envelope text-rp-gold mr-1.5"></i> threeplimited@gmail.com</span>
+    <!-- Top Status / Trade Dispatch Bar -->
+    <div class="bg-[#05070A] border-b border-gray-800/80 text-xs text-gray-400 py-2 px-4 sm:px-6 lg:px-8 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-4 flex-wrap">
+                <span class="flex items-center text-gray-300">
+                    <i class="fas fa-location-dot text-rp-gold mr-1.5"></i> Duruma Road, Nyamakima, Nairobi (Next to Kirk House)
+                </span>
+                <span class="hidden md:inline-flex items-center text-gray-300">
+                    <i class="fas fa-truck-fast text-rp-gold mr-1.5"></i> Countrywide Kenya Parcel Delivery (EasyCoach, 2NK, Guardian, Wells Fargo)
+                </span>
             </div>
             <div class="flex items-center gap-4">
-                <span class="text-gray-400">Socials:</span>
-                <a href="https://www.facebook.com/profile.php?id=61565559560936" target="_blank" rel="noopener noreferrer" class="hover:text-rp-gold transition-colors flex items-center gap-1.5" title="Facebook">
-                    <i class="fab fa-facebook text-[#1877F2]"></i> <span>3P Electricals</span>
-                </a>
-                <span class="text-gray-600">|</span>
-                <a href="https://www.instagram.com/ripplep_electricals/" target="_blank" rel="noopener noreferrer" class="hover:text-rp-gold transition-colors flex items-center gap-1.5" title="Instagram">
-                    <i class="fab fa-instagram text-[#E1306C]"></i> <span>@ripplep_electricals</span>
-                </a>
+                <span class="flex items-center gap-1.5">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-emerald-400 font-medium" id="showroom-status">Showroom Open (8 AM - 6 PM)</span>
+                </span>
+                <span class="text-gray-600 hidden sm:inline">|</span>
+                <div class="hidden sm:flex items-center gap-2">
+                    <a href="https://www.facebook.com/profile.php?id=61565559560936" target="_blank" class="hover:text-rp-gold transition"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/ripplep_electricals/" target="_blank" class="hover:text-rp-gold transition"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
     </div>
 
-    <header class="bg-rp-black text-rp-white sticky top-0 z-50 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigate('home')">
-                    <span class="font-bold text-2xl tracking-tight">RIPPLE P <span class="text-rp-gold">ELECTRICALS</span></span>
-                </div>
-
-                <!-- Desktop Nav -->
-                <nav class="hidden md:flex space-x-7 items-center">
-                    <button onclick="navigate('home')" class="nav-link text-rp-grey hover:text-rp-gold transition-colors font-medium">Home</button>
-                    <button onclick="navigate('products')" class="nav-link text-rp-grey hover:text-rp-gold transition-colors font-medium">Products</button>
-                    <button onclick="navigate('wholesale')" class="nav-link text-rp-grey hover:text-rp-gold transition-colors font-medium">Wholesale</button>
-                    <button onclick="navigate('about')" class="nav-link text-rp-grey hover:text-rp-gold transition-colors font-medium">About</button>
-                    <button onclick="navigate('contact')" class="nav-link text-rp-grey hover:text-rp-gold transition-colors font-medium">Contact</button>
-                    
-                    <!-- Social icons in desktop navbar -->
-                    <div class="flex items-center space-x-3 border-l border-gray-700 pl-4">
-                        <a href="https://www.instagram.com/ripplep_electricals/" target="_blank" rel="noopener noreferrer" title="Instagram: @ripplep_electricals" class="text-gray-400 hover:text-[#E1306C] text-lg transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61565559560936" target="_blank" rel="noopener noreferrer" title="Facebook: 3P Electricals" class="text-gray-400 hover:text-[#1877F2] text-lg transition-colors">
-                            <i class="fab fa-facebook"></i>
-                        </a>
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-amber-600 to-rp-gold p-0.5 flex items-center justify-center shadow-lg shadow-rp-gold/20">
+                    <div class="w-full h-full bg-rp-obsidian rounded-[7px] flex items-center justify-center">
+                        <i class="fas fa-lightbulb text-rp-gold text-lg group-hover:scale-110 transition-transform"></i>
                     </div>
-
-                    <a href="https://wa.me/254721647578" target="_blank" class="bg-rp-gold text-rp-black px-5 py-2 rounded-md font-semibold hover:bg-rp-gold-hover transition-colors flex items-center gap-2">
-                        <i class="fab fa-whatsapp text-lg"></i> WhatsApp
-                    </a>
-                </nav>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-rp-white hover:text-rp-gold focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
                 </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white block leading-none">
+                        RIPPLE P <span class="gold-gradient-text">ELECTRICALS</span>
+                    </span>
+                    <span class="text-[10px] tracking-widest text-gray-400 uppercase font-medium">Three P Limited • Nairobi</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+                <a href="#hero" class="text-gray-300 hover:text-rp-gold transition">Showroom</a>
+                <a href="#flagship" class="text-gray-300 hover:text-rp-gold transition">Flagship Series</a>
+                <a href="#catalog" class="text-gray-300 hover:text-rp-gold transition">Full Catalog</a>
+                <a href="#boq-estimator" class="text-gray-300 hover:text-rp-gold transition flex items-center gap-1.5">
+                    <span class="bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.5 rounded font-bold uppercase">Trade</span>
+                    BoQ Estimator
+                </a>
+                <a href="#about-location" class="text-gray-300 hover:text-rp-gold transition">Visit Us</a>
+            </nav>
+
+            <!-- Actions & Direct WhatsApp CTA -->
+            <div class="flex items-center gap-3">
+                <a href="tel:+254721647578" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-gray-300 bg-white/5 hover:bg-white/10 px-3.5 py-2.5 rounded-lg border border-white/10 transition">
+                    <i class="fas fa-phone text-rp-gold"></i> +254 721 647 578
+                </a>
+                <a href="https://wa.me/254721647578?text=Hello%20Ripple%20P%20Electricals%2C%20I%20am%20inquiring%20about%20your%20lighting%20and%20electrical%20products." 
+                   target="_blank" 
+                   class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-lg shadow-lg shadow-[#25D366]/20 transition transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>WhatsApp Desk</span>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-toggle" class="lg:hidden p-2 text-gray-400 hover:text-white" aria-label="Toggle menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
 
-        <!-- Mobile Nav -->
-        <div id="mobile-menu" class="hidden md:hidden bg-rp-dark border-t border-gray-700">
-            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 flex flex-col">
-                <button onclick="navigate('home')" class="text-left text-rp-white hover:text-rp-gold block px-3 py-3 rounded-md text-base font-medium">Home</button>
-                <button onclick="navigate('products')" class="text-left text-rp-white hover:text-rp-gold block px-3 py-3 rounded-md text-base font-medium">Products</button>
-                <button onclick="navigate('wholesale')" class="text-left text-rp-white hover:text-rp-gold block px-3 py-3 rounded-md text-base font-medium">Wholesale</button>
-                <button onclick="navigate('about')" class="text-left text-rp-white hover:text-rp-gold block px-3 py-3 rounded-md text-base font-medium">About</button>
-                <button onclick="navigate('contact')" class="text-left text-rp-white hover:text-rp-gold block px-3 py-3 rounded-md text-base font-medium">Contact</button>
-                
-                <div class="pt-3 pb-1 border-t border-gray-700 px-3 flex items-center justify-between">
-                    <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Follow Us:</span>
-                    <div class="flex items-center gap-3">
-                        <a href="https://www.facebook.com/profile.php?id=61565559560936" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[#1877F2] text-sm flex items-center gap-1.5 p-1"><i class="fab fa-facebook text-[#1877F2]"></i> Facebook</a>
-                        <a href="https://www.instagram.com/ripplep_electricals/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[#E1306C] text-sm flex items-center gap-1.5 p-1"><i class="fab fa-instagram text-[#E1306C]"></i> Instagram</a>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/254721647578" target="_blank" class="bg-rp-gold text-rp-black mt-2 mx-3 px-5 py-3 rounded-md font-semibold text-center hover:bg-rp-gold-hover transition-colors flex justify-center items-center gap-2">
-                    <i class="fab fa-whatsapp text-lg"></i> Chat on WhatsApp
-                </a>
-            </div>
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-drawer" class="hidden lg:hidden bg-rp-surface border-t border-white/10 px-4 py-4 space-y-3">
+            <a href="#hero" class="block py-2 text-gray-200 hover:text-rp-gold mobile-nav-link">Showroom</a>
+            <a href="#flagship" class="block py-2 text-gray-200 hover:text-rp-gold mobile-nav-link">Flagship Collections</a>
+            <a href="#catalog" class="block py-2 text-gray-200 hover:text-rp-gold mobile-nav-link">Full Catalog (50+ Products)</a>
+            <a href="#boq-estimator" class="block py-2 text-amber-400 font-semibold mobile-nav-link">Contractor BoQ Estimator</a>
+            <a href="#about-location" class="block py-2 text-gray-200 hover:text-rp-gold mobile-nav-link">Showroom & Map</a>
+            <a href="tel:+254721647578" class="block py-2 text-gray-400 text-sm"><i class="fas fa-phone mr-2 text-rp-gold"></i> Call 0721 647 578</a>
         </div>
     </header>
 
-    <main class="flex-grow">
+    <!-- ================================================================= -->
+    <!-- 1. CINEMATIC HERO & INTERACTIVE 3D LIGHTING SIMULATOR -->
+    <!-- ================================================================= -->
+    <section id="hero" class="relative min-h-[90vh] flex items-center justify-center pt-8 pb-16 overflow-hidden">
         
-        <!-- ============================================== -->
-        <!-- HOME PAGE -->
-        <!-- ============================================== -->
-        <section id="page-home" class="page-section active">
-            
-            <!-- Hero Section -->
-            <div class="hero-bg relative text-rp-white py-32 md:py-48 flex items-center">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center md:text-left">
-                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight max-w-3xl">
-                        Lighting & Electrical Products <span class="text-rp-gold">You Can Rely On</span>
+        <!-- 3D Three.js Ambient Lighting Canvas (Background) -->
+        <div id="three-hero-container" class="absolute inset-0 z-0 pointer-events-none opacity-40 md:opacity-60"></div>
+
+        <!-- Gradient Ambient Vignette -->
+        <div class="absolute inset-0 bg-gradient-to-t from-rp-obsidian via-transparent to-rp-obsidian/80 z-0 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Column: High-Impact Proposition -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rp-gold/10 border border-rp-gold/30 text-rp-gold text-xs font-semibold tracking-wide uppercase">
+                        <i class="fas fa-gem text-amber-400"></i> Direct Importers • Duruma Road, Nyamakima
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+                        Architectural Lighting for <span class="gold-gradient-text font-serif italic">Kenya’s Finest</span> Homes & Projects.
                     </h1>
-                    <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-2xl mb-10 font-light">
-                        Quality lighting and electrical products for homes, businesses, construction projects and professional installations.
+
+                    <p class="text-gray-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Transform your living room, hotel, or commercial building with authentic K9 crystal chandeliers, VIP glass-touch switches, magnetic track systems, and certified copper cables.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <button onclick="navigate('products')" class="bg-rp-gold text-rp-black px-8 py-4 rounded-md font-bold text-lg hover:bg-rp-gold-hover transition-colors">
-                            Explore Products
-                        </button>
-                        <a href="https://wa.me/254721647578" target="_blank" class="bg-rp-white text-rp-black px-8 py-4 rounded-md font-bold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
-                            <i class="fab fa-whatsapp text-green-600 text-xl"></i> Chat on WhatsApp
+
+                    <!-- Interactive Ambient Lighting Simulator Switcher -->
+                    <div class="p-4 rounded-xl glass-panel max-w-lg mx-auto lg:mx-0 border border-white/10 space-y-3">
+                        <div class="flex items-center justify-between text-xs text-gray-300 font-medium">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fas fa-sliders text-rp-gold"></i> Live Lighting Atmosphere:
+                            </span>
+                            <span id="current-temp-label" class="text-amber-400 font-bold">3000K Warm Gold (Luxury Living)</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="setLightingTemp('warm')" id="btn-temp-warm" class="temp-btn py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/50 shadow-sm shadow-amber-500/20">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> 3000K Warm
+                            </button>
+                            <button onclick="setLightingTemp('neutral')" id="btn-temp-neutral" class="temp-btn py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-white/5 text-gray-400 hover:text-white border border-white/10">
+                                <span class="w-2.5 h-2.5 rounded-full bg-white"></span> 4000K Pure
+                            </button>
+                            <button onclick="setLightingTemp('cool')" id="btn-temp-cool" class="temp-btn py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-white/5 text-gray-400 hover:text-white border border-white/10">
+                                <span class="w-2.5 h-2.5 rounded-full bg-sky-300"></span> 6500K Cool
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Call to Actions -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2 justify-center lg:justify-start">
+                        <a href="#catalog" class="px-7 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-rp-gold text-rp-obsidian font-extrabold text-sm sm:text-base hover:shadow-lg hover:shadow-rp-gold/25 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-layer-group"></i> Explore 50+ Product Catalog
+                        </a>
+                        <a href="#boq-estimator" class="px-7 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-sm sm:text-base border border-white/15 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-file-invoice-dollar text-rp-gold"></i> Contractor BoQ Quote
                         </a>
                     </div>
-                </div>
-            </div>
 
-            <!-- Shop By Category Section -->
-            <div class="py-20 bg-rp-grey">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-rp-black mb-4">Shop By Category</h2>
-                        <div class="h-1 w-20 bg-rp-gold mx-auto"></div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- Category Card 1: Chandeliers -->
-                        <div class="bg-rp-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col">
-                            <div class="h-52 bg-gray-200 overflow-hidden relative">
-                                <img src="photos/1. Chandeliers/crystal-round-gold-chandelier-rfch20055-500.jpeg" alt="Chandeliers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-6 text-center flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-rp-black mb-2">Chandeliers</h3>
-                                <p class="text-gray-600 text-sm mb-4 flex-grow">Luxury crystal, modern LED rings, and vintage rope beam chandeliers.</p>
-                                <button onclick="navigate('products'); filterProducts('Chandeliers')" class="text-rp-gold font-semibold hover:text-rp-black transition-colors text-sm uppercase tracking-wider">View Chandeliers <i class="fas fa-arrow-right ml-1"></i></button>
-                            </div>
-                        </div>
-                        
-                        <!-- Category Card 2: Wall Brackets -->
-                        <div class="bg-rp-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col">
-                            <div class="h-52 bg-gray-200 overflow-hidden relative">
-                                <img src="photos/2. Wall Brackets/vertical-acrylic-led-wall-bracket-28x8cm.jpeg" alt="Wall Brackets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-6 text-center flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-rp-black mb-2">Wall Brackets</h3>
-                                <p class="text-gray-600 text-sm mb-4 flex-grow">Modern spiral LEDs, acrylic wall sconces, glass cylinders, and accent lights.</p>
-                                <button onclick="navigate('products'); filterProducts('Wall Brackets')" class="text-rp-gold font-semibold hover:text-rp-black transition-colors text-sm uppercase tracking-wider">View Wall Brackets <i class="fas fa-arrow-right ml-1"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Category Card 3: Hanging Lights -->
-                        <div class="bg-rp-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col">
-                            <div class="h-52 bg-gray-200 overflow-hidden relative">
-                                <img src="photos/3. Hanging Lights/3-globe-glass-linear-pendant-light.jpeg" alt="Hanging Lights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-6 text-center flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-rp-black mb-2">Hanging Lights</h3>
-                                <p class="text-gray-600 text-sm mb-4 flex-grow">Glass globe pendants, wire cage fixtures, and dining island hanging lights.</p>
-                                <button onclick="navigate('products'); filterProducts('Hanging Lights')" class="text-rp-gold font-semibold hover:text-rp-black transition-colors text-sm uppercase tracking-wider">View Hanging Lights <i class="fas fa-arrow-right ml-1"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Category Card 4: Sockets and Switches VIP -->
-                        <div class="bg-rp-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col">
-                            <div class="h-52 bg-gray-200 overflow-hidden relative">
-                                <img src="photos/4. Sockets and Switches VIP/moonlight-gold-trim-vip-switches.jpeg" alt="Sockets & Switches VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-6 text-center flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-rp-black mb-2">Sockets & Switches (VIP)</h3>
-                                <p class="text-gray-600 text-sm mb-4 flex-grow">Premium Moonlight, Purple, C75 Gold, C85 Grey Brushed, and X10 Chrome series.</p>
-                                <button onclick="navigate('products'); filterProducts('Sockets & Switches VIP')" class="text-rp-gold font-semibold hover:text-rp-black transition-colors text-sm uppercase tracking-wider">View VIP Switches <i class="fas fa-arrow-right ml-1"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Category Card 5: Magnetic Track & Profiles -->
-                        <div class="bg-rp-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col">
-                            <div class="h-52 bg-gray-200 overflow-hidden relative">
-                                <img src="photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-20w-foldable-spotlight.jpeg" alt="Magnetic Track & Aluminium Profiles" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-6 text-center flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-rp-black mb-2">Magnetic Track & Profiles</h3>
-                                <p class="text-gray-600 text-sm mb-4 flex-grow">Recessed magnetic rails, flood modules, grille spots, and LED aluminium channels.</p>
-                                <button onclick="navigate('products'); filterProducts('Magnetic Track & Profiles')" class="text-rp-gold font-semibold hover:text-rp-black transition-colors text-sm uppercase tracking-wider">View Track & Profiles <i class="fas fa-arrow-right ml-1"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Category Card 6: Panel Lights -->
-                        <div class="bg-rp-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col">
-                            <div class="h-52 bg-gray-200 overflow-hidden relative">
-                                <img src="photos/6. Panel Lights/atta-spotlight-fitting-triple-square-rh-mh6.jpeg" alt="Panel Lights & Downlights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-6 text-center flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-rp-black mb-2">Panel Lights & Downlights</h3>
-                                <p class="text-gray-600 text-sm mb-4 flex-grow">Surface rim-glow panels, deep anti-glare spots, and ATTA multi-lamp fittings.</p>
-                                <button onclick="navigate('products'); filterProducts('Panel Lights')" class="text-rp-gold font-semibold hover:text-rp-black transition-colors text-sm uppercase tracking-wider">View Panel Lights <i class="fas fa-arrow-right ml-1"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Category Card 7: Decorative & Table Lamps -->
-                        <div class="bg-rp-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col">
-                            <div class="h-52 bg-gray-200 overflow-hidden relative">
-                                <img src="photos/7. Decorative and Table Lamps/gold-monkey-table-lamp.jpeg" alt="Decorative & Table Lamps" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-6 text-center flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-rp-black mb-2">Decorative Lamps</h3>
-                                <p class="text-gray-600 text-sm mb-4 flex-grow">Artistic sculpted table lamps, novelty figurines, and atmospheric bedside lighting.</p>
-                                <button onclick="navigate('products'); filterProducts('Decorative & Table Lamps')" class="text-rp-gold font-semibold hover:text-rp-black transition-colors text-sm uppercase tracking-wider">View Decorative <i class="fas fa-arrow-right ml-1"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Category Card 8: Electrical Wires & Cables -->
-                        <div class="bg-rp-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col">
-                            <div class="h-52 bg-gray-200 overflow-hidden relative">
-                                <img src="photos/8. Electrical Wires and Cables/tronic-single-core-building-wire-coils.jpeg" alt="Electrical Wires & Cables" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-6 text-center flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-rp-black mb-2">Wires, Cables & Conduit</h3>
-                                <p class="text-gray-600 text-sm mb-4 flex-grow">Single-core building wires (1.5mm, 2.5mm, 6.0mm), FRLS domestic cables, and PVC conduit accessories.</p>
-                                <button onclick="navigate('products'); filterProducts('Electrical Wires & Cables')" class="text-rp-gold font-semibold hover:text-rp-black transition-colors text-sm uppercase tracking-wider">View Wires & Cables <i class="fas fa-arrow-right ml-1"></i></button>
-                            </div>
-                        </div>
-                    </div></div>
-                </div>
-            </div>
-
-            <div class="py-20 bg-rp-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-end mb-12 border-b pb-4">
+                    <!-- Key Guarantees -->
+                    <div class="grid grid-cols-3 gap-3 pt-4 border-t border-white/10 max-w-lg mx-auto lg:mx-0 text-left text-xs text-gray-400">
                         <div>
-                            <h2 class="text-3xl font-bold text-rp-black mb-2">Featured Products</h2>
-                            <p class="text-gray-600">A selection of our popular lighting and electrical items.</p>
-                        </div>
-                        <button onclick="navigate('products')" class="hidden md:inline-block text-rp-black font-semibold hover:text-rp-gold transition-colors">
-                            View All Catalogue <i class="fas fa-arrow-right ml-1"></i>
-                        </button>
-                    </div>
-
-                    <!-- Products Grid (Populated by JS) -->
-                    <div id="home-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- JS injected cards go here -->
-                    </div>
-                    
-                    <div class="mt-10 text-center md:hidden">
-                        <button onclick="navigate('products')" class="w-full border-2 border-rp-black text-rp-black px-6 py-3 rounded-md font-bold hover:bg-rp-black hover:text-rp-white transition-colors">
-                            View Complete Catalogue
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="py-20 bg-rp-black text-rp-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-16">
-                        <h2 class="text-3xl font-bold mb-4">Why Choose Ripple P Electricals</h2>
-                        <div class="h-1 w-20 bg-rp-gold mx-auto"></div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
-                        <div>
-                            <div class="w-16 h-16 bg-rp-dark rounded-full flex items-center justify-center mx-auto mb-6 text-rp-gold text-2xl">
-                                <i class="fas fa-gem"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3">Quality Products</h3>
-                            <p class="text-gray-400">Carefully selected lighting and electrical products designed for durability and performance.</p>
+                            <span class="block text-white font-bold text-sm">100% Genuine</span>
+                            <span>K9 Crystals & Heavy Copper</span>
                         </div>
                         <div>
-                            <div class="w-16 h-16 bg-rp-dark rounded-full flex items-center justify-center mx-auto mb-6 text-rp-gold text-2xl">
-                                <i class="fas fa-boxes"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3">Retail & Wholesale</h3>
-                            <p class="text-gray-400">Flexible solutions tailored for individual homeowners and large-scale bulk buyers.</p>
+                            <span class="block text-white font-bold text-sm">Trade Prices</span>
+                            <span>Direct Importer Pricing</span>
                         </div>
                         <div>
-                            <div class="w-16 h-16 bg-rp-dark rounded-full flex items-center justify-center mx-auto mb-6 text-rp-gold text-2xl">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3">Helpful Guidance</h3>
-                            <p class="text-gray-400">Professional support in choosing the right products for different spaces and projects.</p>
-                        </div>
-                        <div>
-                            <div class="w-16 h-16 bg-rp-dark rounded-full flex items-center justify-center mx-auto mb-6 text-rp-gold text-2xl">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3">Easy Ordering</h3>
-                            <p class="text-gray-400">Contact us directly through WhatsApp or request a fast, competitive quotation.</p>
+                            <span class="block text-white font-bold text-sm">Fast Dispatch</span>
+                            <span>Same-day Nairobi Delivery</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="wholesale-bg relative py-24">
-                <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-                    <h2 class="text-3xl md:text-5xl font-bold text-rp-white mb-6">Buying in Bulk?</h2>
-                    <p class="text-xl text-gray-300 mb-10">
-                        Ripple P Electricals serves customers purchasing lighting and electrical products in larger quantities for retail, construction, installation and commercial projects.
-                    </p>
-                    <button onclick="navigate('wholesale')" class="bg-rp-gold text-rp-black px-8 py-4 rounded-md font-bold text-lg hover:bg-rp-gold-hover transition-colors shadow-lg">
-                        Request a Wholesale Quote
-                    </button>
-                </div>
-            </div>
+                <!-- Right Column: Interactive Flagship Lighting Feature Stage -->
+                <div class="lg:col-span-5 relative">
+                    <!-- Glow Aura -->
+                    <div id="hero-glow-aura" class="absolute -inset-4 bg-gradient-to-tr from-amber-500/20 to-yellow-600/10 rounded-3xl blur-2xl transition-all duration-700 pointer-events-none"></div>
 
-            <!-- Applications Section -->
-            <div class="py-20 bg-rp-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-rp-black mb-4">Lighting Every Space</h2>
-                        <p class="text-gray-600">Solutions designed for diverse applications.</p>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                        <div class="bg-rp-grey p-6 text-center rounded-lg">
-                            <i class="fas fa-home text-3xl text-gray-400 mb-3"></i>
-                            <h4 class="font-bold text-sm">Homes</h4>
-                        </div>
-                        <div class="bg-rp-grey p-6 text-center rounded-lg">
-                            <i class="fas fa-building text-3xl text-gray-400 mb-3"></i>
-                            <h4 class="font-bold text-sm">Offices</h4>
-                        </div>
-                        <div class="bg-rp-grey p-6 text-center rounded-lg">
-                            <i class="fas fa-store text-3xl text-gray-400 mb-3"></i>
-                            <h4 class="font-bold text-sm">Shops</h4>
-                        </div>
-                        <div class="bg-rp-grey p-6 text-center rounded-lg">
-                            <i class="fas fa-city text-3xl text-gray-400 mb-3"></i>
-                            <h4 class="font-bold text-sm">Commercial</h4>
-                        </div>
-                        <div class="bg-rp-grey p-6 text-center rounded-lg">
-                            <i class="fas fa-hard-hat text-3xl text-gray-400 mb-3"></i>
-                            <h4 class="font-bold text-sm">Construction</h4>
-                        </div>
-                        <div class="bg-rp-grey p-6 text-center rounded-lg">
-                            <i class="fas fa-tree text-3xl text-gray-400 mb-3"></i>
-                            <h4 class="font-bold text-sm">Outdoors</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="page-products" class="page-section pt-10 pb-20 bg-rp-grey min-h-screen">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="mb-10 text-center">
-                    <h1 class="text-4xl font-bold text-rp-black mb-4">Product Catalogue</h1>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Browse our selection of premium lighting and electrical accessories. Find the perfect fit for your specific requirements.</p>
-                </div>
-
-                                <!-- Filters -->
-                <div class="flex flex-wrap justify-center gap-3 mb-12">
-                    <button onclick="filterProducts('All')" class="filter-btn active bg-rp-black text-rp-white px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="All">All Products</button>
-                    <button onclick="filterProducts('Chandeliers')" class="filter-btn bg-white text-rp-black border border-gray-300 hover:border-rp-black px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="Chandeliers">Chandeliers</button>
-                    <button onclick="filterProducts('Wall Brackets')" class="filter-btn bg-white text-rp-black border border-gray-300 hover:border-rp-black px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="Wall Brackets">Wall Brackets</button>
-                    <button onclick="filterProducts('Hanging Lights')" class="filter-btn bg-white text-rp-black border border-gray-300 hover:border-rp-black px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="Hanging Lights">Hanging Lights</button>
-                    <button onclick="filterProducts('Sockets & Switches VIP')" class="filter-btn bg-white text-rp-black border border-gray-300 hover:border-rp-black px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="Sockets & Switches VIP">Sockets & Switches VIP</button>
-                    <button onclick="filterProducts('Magnetic Track & Profiles')" class="filter-btn bg-white text-rp-black border border-gray-300 hover:border-rp-black px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="Magnetic Track & Profiles">Magnetic Track & Profiles</button>
-                    <button onclick="filterProducts('Panel Lights')" class="filter-btn bg-white text-rp-black border border-gray-300 hover:border-rp-black px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="Panel Lights">Panel Lights</button>
-                    <button onclick="filterProducts('Decorative & Table Lamps')" class="filter-btn bg-white text-rp-black border border-gray-300 hover:border-rp-black px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="Decorative & Table Lamps">Decorative Lamps</button>
-                    <button onclick="filterProducts('Electrical Wires & Cables')" class="filter-btn bg-white text-rp-black border border-gray-300 hover:border-rp-black px-5 py-2 rounded-full font-semibold text-sm transition-colors" data-filter="Electrical Wires & Cables">Wires & Cables</button>
-                </div>
-
-                <!-- Products Grid -->
-                <div id="full-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- JS injected cards go here -->
-                </div>
-
-            </div>
-        </section>
-
-        <section id="page-wholesale" class="page-section bg-rp-white min-h-screen">
-            <!-- Header -->
-            <div class="bg-rp-black text-rp-white py-20">
-                <div class="max-w-4xl mx-auto px-4 text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-rp-gold">Wholesale & Bulk Supply</h1>
-                    <p class="text-xl text-gray-300">
-                        Lighting and electrical products for retailers, contractors, electricians, businesses, institutions and projects.
-                    </p>
-                </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    <!-- Information Side -->
-                    <div>
-                        <h2 class="text-3xl font-bold text-rp-black mb-6">Partner With Us</h2>
-                        <p class="text-gray-600 mb-8 leading-relaxed">
-                            Ripple P Electricals understands the specific demands of bulk purchasing. We offer competitive pricing, consistent quality, and reliable supply for professionals and businesses across Kenya.
-                        </p>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="bg-rp-grey p-3 rounded-md text-rp-black mr-4"><i class="fas fa-store"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-lg">For Retailers</h4>
-                                    <p class="text-gray-600 text-sm">Stock your shelves with fast-moving, high-quality electrical and lighting products.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-rp-grey p-3 rounded-md text-rp-black mr-4"><i class="fas fa-tools"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-lg">For Contractors & Electricians</h4>
-                                    <p class="text-gray-600 text-sm">Reliable components and fixtures for residential and commercial installations.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-rp-grey p-3 rounded-md text-rp-black mr-4"><i class="fas fa-building"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-lg">For Developers & Institutions</h4>
-                                    <p class="text-gray-600 text-sm">Bulk supply for construction projects, offices, schools, and hospitals.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-10 p-6 bg-rp-grey rounded-lg border-l-4 border-rp-gold">
-                            <h3 class="font-bold text-lg mb-2">Prefer to speak directly?</h3>
-                            <p class="text-gray-600 mb-4">Chat with our wholesale team instantly on WhatsApp.</p>
-                            <a href="https://wa.me/254721647578?text=Hello%20Ripple%20P%20Electricals,%20I%20am%20interested%20in%20a%20wholesale/bulk%20order." target="_blank" class="inline-block bg-[#25D366] text-white px-6 py-3 rounded-md font-bold hover:bg-[#1ebd5b] transition-colors">
-                                <i class="fab fa-whatsapp text-lg mr-2"></i> Message on WhatsApp
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Form Side -->
-                    <div class="bg-rp-grey p-8 rounded-xl shadow-sm">
-                        <h3 class="text-2xl font-bold text-rp-black mb-6">Request a Wholesale Quote</h3>
-                        <form onsubmit="handleWholesaleSubmit(event)">
-                            <!-- Anti-bot honeypot field (hidden from real users) -->
-                            <input type="text" id="ws-trap" name="security_hp" style="display:none !important; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
-                                    <input type="text" id="ws-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="Your Name" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Company / Org.</label>
-                                    <input type="text" id="ws-company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="Company Name">
-                                </div>
-                            </div>
+                    <!-- Featured Hero Showcase Card -->
+                    <div class="relative glass-card rounded-2xl p-4 sm:p-5 overflow-hidden">
+                        <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-black/40 mb-4 group">
+                            <img id="hero-feature-img" src="photos/1. Chandeliers/crystal-round-gold-chandelier-rfch20055-500.jpeg" alt="Featured Grand Chandelier" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-rp-obsidian via-transparent to-transparent opacity-80"></div>
                             
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <!-- Badges -->
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="bg-amber-500/90 text-black text-xs font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">Flagship</span>
+                                <span class="bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-md border border-white/10">K9 Crystal</span>
+                            </div>
+
+                            <!-- Floating Spec Tag -->
+                            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-md p-2.5 rounded-lg border border-white/15">
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Phone / WhatsApp *</label>
-                                    <input type="tel" id="ws-phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="Phone Number" required>
+                                    <span class="font-bold block" id="hero-feature-title">RFCH20055-500 Grand Gold Chandelier</span>
+                                    <span class="text-gray-400 text-[11px]" id="hero-feature-dim">Diameter 500mm • Multi-Tier Prisms</span>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
-                                    <input type="email" id="ws-email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="Email Address">
-                                </div>
+                                <a href="https://wa.me/254721647578?text=Hello%20Ripple%20P%2C%20please%20send%20me%20pricing%20and%20availability%20for%20the%20RFCH20055-500%20Grand%20Gold%20Chandelier." target="_blank" class="bg-[#25D366] hover:bg-[#20ba59] text-white p-2 rounded-md font-bold flex items-center gap-1 transition">
+                                    <i class="fab fa-whatsapp text-sm"></i> Inquire
+                                </a>
                             </div>
+                        </div>
 
-                            <div class="mb-4">
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Project Type / Customer Type</label>
-                                <select id="ws-type" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold bg-white">
-                                    <option value="Retailer / Shop Owner">Retailer / Shop Owner</option>
-                                    <option value="Electrical Contractor">Electrical Contractor</option>
-                                    <option value="Property Developer">Property Developer</option>
-                                    <option value="Institution / Business">Institution / Business</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Products Required &amp; Estimated Quantities *</label>
-                                <textarea id="ws-products" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="E.g. 50x LED Panels, 200x Double Sockets, 10 rolls 2.5mm wire..." required></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full bg-rp-black text-rp-white font-bold py-3 px-4 rounded-md hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
-                                <i class="fab fa-whatsapp text-lg"></i> Send Wholesale Request via WhatsApp
+                        <!-- 3-Thumb Selector -->
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <button onclick="switchHeroFeature(0)" class="p-1.5 rounded-lg border border-rp-gold/60 bg-rp-gold/10 text-left transition flex items-center gap-2">
+                                <img src="photos/1. Chandeliers/crystal-round-gold-chandelier-rfch20055-500.jpeg" class="w-8 h-8 rounded object-cover">
+                                <span class="font-bold text-gray-200 truncate">Chandelier</span>
                             </button>
-                        </form>
-                        <div class="mt-4 p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center gap-2">
-                            <i class="fas fa-shield-alt text-amber-600"></i>
-                            <span><strong>Official Desk:</strong> Quotes &amp; orders are verified solely via +254 721 647 578.</span>
+                            <button onclick="switchHeroFeature(1)" class="p-1.5 rounded-lg border border-white/10 bg-white/5 text-left transition hover:border-white/30 flex items-center gap-2">
+                                <img src="photos/4. Sockets and Switches VIP/luxury-metallic-dual-socket-switches.jpeg" class="w-8 h-8 rounded object-cover">
+                                <span class="font-bold text-gray-400 truncate">VIP Switch</span>
+                            </button>
+                            <button onclick="switchHeroFeature(2)" class="p-1.5 rounded-lg border border-white/10 bg-white/5 text-left transition hover:border-white/30 flex items-center gap-2">
+                                <img src="photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-cylindrical-pendant-spotlight.jpeg" class="w-8 h-8 rounded object-cover">
+                                <span class="font-bold text-gray-400 truncate">Mag Track</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- 2. THE UNFOLDING FLAGSHIP STAGES (JULIAN GOLDIE ARCHITECTURE) -->
+    <!-- ================================================================= -->
+    <section id="flagship" class="py-20 bg-rp-surface relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-rp-gold text-xs font-bold tracking-widest uppercase mb-2 block">Direct Trade Collections</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Three Pillars of High-End Finishings
+                </h2>
+                <p class="mt-3 text-gray-400 text-sm sm:text-base">
+                    Every luxury residential build in Nairobi starts with these three essential categories. Click any stage to browse details or request trade quotes.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Stage 1: Crystal & Architectural Chandeliers -->
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="photos/1. Chandeliers/crystal-round-gold-chandelier-rfch20056-400.jpeg" alt="Luxury Chandeliers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-rp-card via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-rp-obsidian/80 text-rp-gold border border-rp-gold/30 text-xs font-bold px-3 py-1 rounded-full uppercase">Pillar 01</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-rp-gold transition">Luxury Crystal & LED Chandeliers</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+                            Layered K9 sparkling crystal prisms, orbital modern rings, and vintage rope beams for double-volume living rooms and dining areas.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-xs text-gray-400">19 Exclusive Models</span>
+                            <a href="#catalog" onclick="filterCatalog('Chandeliers')" class="text-rp-gold hover:text-amber-300 font-bold text-xs uppercase tracking-wider flex items-center gap-1">
+                                View Collection <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2: VIP Luxury Tempered Glass Switches & Sockets -->
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="photos/4. Sockets and Switches VIP/c75-gold-chrome-vip-switches.jpeg" alt="VIP Sockets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-rp-card via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-rp-obsidian/80 text-rp-gold border border-rp-gold/30 text-xs font-bold px-3 py-1 rounded-full uppercase">Pillar 02</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-rp-gold transition">VIP Sockets & Switches Series</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+                            Brushed gold, tempered crystal black, and champagne plates. Scratch-resistant, fire-retardant luxury modules replacing standard white plastic.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-xs text-gray-400">30 Plate Configurations</span>
+                            <a href="#catalog" onclick="filterCatalog('Sockets & Switches VIP')" class="text-rp-gold hover:text-amber-300 font-bold text-xs uppercase tracking-wider flex items-center gap-1">
+                                View Collection <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3: Architectural Magnetic Track & Linear Profiles -->
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-linear-flood-cv21-fgd-300.jpeg" alt="Magnetic Track Lights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-rp-card via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-rp-obsidian/80 text-rp-gold border border-rp-gold/30 text-xs font-bold px-3 py-1 rounded-full uppercase">Pillar 03</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-rp-gold transition">Magnetic Tracks & Aluminium Profiles</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+                            Ultra-modern 48V low-voltage magnetic rails with snap-on spotlights, linear floods, and gypsum ceiling channel profiles for minimalist homes.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-xs text-gray-400">22 Track Components</span>
+                            <a href="#catalog" onclick="filterCatalog('Magnetic Track & Profiles')" class="text-rp-gold hover:text-amber-300 font-bold text-xs uppercase tracking-wider flex items-center gap-1">
+                                View Collection <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="page-about" class="page-section bg-rp-white min-h-screen pt-10 pb-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h1 class="text-4xl font-bold text-rp-black mb-4">About Ripple P Electricals</h1>
-                    <div class="h-1 w-20 bg-rp-gold mx-auto mb-6"></div>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        Your professional partner for modern lighting and electrical solutions in Kenya.
-                    </p>
-                </div>
+    <!-- ================================================================= -->
+    <!-- 3. CONTRACTOR BoQ & PROJECT ESTIMATOR (REAL ECONOMY UTILITY) -->
+    <!-- ================================================================= -->
+    <section id="boq-estimator" class="py-20 relative bg-rp-obsidian">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-6 sm:p-10 border border-rp-gold/20 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-rp-gold/10 rounded-full blur-3xl pointer-events-none"></div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-                    <div>
-                        <div class="bg-gray-200 rounded-lg h-[400px] relative overflow-hidden shadow-lg">
-                            <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?q=80&w=800&auto=format&fit=crop" alt="Lighting Showroom" class="w-full h-full object-cover">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- Left Context -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 text-xs font-bold uppercase">
+                            <i class="fas fa-calculator"></i> Trade BoQ Estimator
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                            Building or Renovating? Estimate Your Package.
+                        </h2>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Electricians, developers, and homeowners can customize their package quantities below and send their bill directly to our Duruma Road trade counter for wholesale pricing.
+                        </p>
+
+                        <div class="space-y-3 pt-2 text-xs text-gray-300">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-rp-gold"></i> Direct WhatsApp dispatch with itemized specifications
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-rp-gold"></i> Contractor bulk discounts applied automatically
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-rp-gold"></i> Verified KEBS compliance on all building cables
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-rp-black mb-4">Who We Are</h2>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Ripple P Electricals is a dedicated Kenyan retail and wholesale business specializing in high-quality lighting and electrical products. We operate as a modern supply hub designed to meet the evolving needs of contemporary living and working spaces.
-                        </p>
-                        
-                        <h2 class="text-2xl font-bold text-rp-black mb-4">What We Supply</h2>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Our catalogue spans a wide range of categories. From energy-efficient LED bulbs and elegant chandeliers to essential electrical accessories like switches, sockets, and robust cabling. Whether for aesthetics or strict functionality, we provide products that deliver.
-                        </p>
 
-                        <h2 class="text-2xl font-bold text-rp-black mb-4">Our Approach</h2>
-                        <p class="text-gray-600 leading-relaxed">
-                            We believe in clarity, quality, and accessibility. By maintaining a clean, professional standard and offering straight-forward wholesale options, we ensure that homeowners, contractors, and businesses have a reliable source for their electrical requirements.
-                        </p>
+                    <!-- Right Form Estimator -->
+                    <div class="lg:col-span-7 bg-rp-card p-6 sm:p-8 rounded-2xl border border-white/10 space-y-5">
+                        <!-- Project Scope -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">1. Select Project Type</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <button type="button" onclick="selectBoqType('mansion')" class="boq-type-btn py-2 px-3 rounded-lg text-xs font-semibold border border-rp-gold bg-rp-gold/10 text-rp-gold transition text-center">
+                                    Maisonette / Villa
+                                </button>
+                                <button type="button" onclick="selectBoqType('apartment')" class="boq-type-btn py-2 px-3 rounded-lg text-xs font-semibold border border-white/10 bg-white/5 text-gray-400 hover:text-white transition text-center">
+                                    Apartment
+                                </button>
+                                <button type="button" onclick="selectBoqType('commercial')" class="boq-type-btn py-2 px-3 rounded-lg text-xs font-semibold border border-white/10 bg-white/5 text-gray-400 hover:text-white transition text-center">
+                                    Office / Shop
+                                </button>
+                                <button type="button" onclick="selectBoqType('custom')" class="boq-type-btn py-2 px-3 rounded-lg text-xs font-semibold border border-white/10 bg-white/5 text-gray-400 hover:text-white transition text-center">
+                                    Custom BoQ
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Item Requirements Sliders / Counters -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                <div class="flex justify-between items-center text-xs mb-1 font-semibold text-gray-300">
+                                    <span>Centerpiece Chandeliers:</span>
+                                    <span id="boq-val-chandeliers" class="text-rp-gold font-bold">2 Units</span>
+                                </div>
+                                <input type="range" min="0" max="10" value="2" id="boq-range-chandeliers" oninput="updateBoqCalc()" class="w-full accent-amber-500">
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                <div class="flex justify-between items-center text-xs mb-1 font-semibold text-gray-300">
+                                    <span>VIP Switches & Sockets:</span>
+                                    <span id="boq-val-sockets" class="text-rp-gold font-bold">35 Plates</span>
+                                </div>
+                                <input type="range" min="5" max="150" step="5" value="35" id="boq-range-sockets" oninput="updateBoqCalc()" class="w-full accent-amber-500">
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                <div class="flex justify-between items-center text-xs mb-1 font-semibold text-gray-300">
+                                    <span>Magnetic Track Rails:</span>
+                                    <span id="boq-val-tracks" class="text-rp-gold font-bold">12 Meters</span>
+                                </div>
+                                <input type="range" min="0" max="60" step="2" value="12" id="boq-range-tracks" oninput="updateBoqCalc()" class="w-full accent-amber-500">
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                <div class="flex justify-between items-center text-xs mb-1 font-semibold text-gray-300">
+                                    <span>House Cable Rolls (1.5mm - 6mm):</span>
+                                    <span id="boq-val-cables" class="text-rp-gold font-bold">6 Rolls</span>
+                                </div>
+                                <input type="range" min="0" max="30" value="6" id="boq-range-cables" oninput="updateBoqCalc()" class="w-full accent-amber-500">
+                            </div>
+                        </div>
+
+                        <!-- Name and Location Input -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <input type="text" id="boq-client-name" placeholder="Your Name or Company *" class="w-full bg-rp-obsidian border border-white/15 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-rp-gold">
+                            <input type="text" id="boq-client-location" placeholder="Site Location (e.g. Ruiru, Karen, Nakuru)" class="w-full bg-rp-obsidian border border-white/15 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-rp-gold">
+                        </div>
+
+                        <!-- Send to WhatsApp -->
+                        <button onclick="submitBoqEstimate()" class="w-full py-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-[#25D366]/20 transition">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                            <span>Send Estimated BoQ to Trade Counter via WhatsApp</span>
+                        </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="bg-rp-black text-rp-white rounded-xl p-10 text-center shadow-xl">
-                    <h3 class="text-2xl font-bold mb-4 text-rp-gold">Visit Ripple P Electricals</h3>
-                    <p class="mb-8 max-w-2xl mx-auto text-gray-300">
-                        Experience our products firsthand. We welcome homeowners, electricians, and developers to explore our offerings and discuss project requirements with our team.
+    <!-- ================================================================= -->
+    <!-- 4. INTERACTIVE PRODUCT CATALOG WITH INSTANT FILTER -->
+    <!-- ================================================================= -->
+    <section id="catalog" class="py-20 bg-rp-surface border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div>
+                    <span class="text-rp-gold text-xs font-bold tracking-widest uppercase mb-2 block">Direct Stock Catalog</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Full Product Inventory</h2>
+                    <p class="text-gray-400 text-sm mt-1">Browse all available showroom models. Click any item for specifications or instant WhatsApp ordering.</p>
+                </div>
+
+                <!-- Instant Search Bar -->
+                <div class="relative w-full md:w-80">
+                    <i class="fas fa-search absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                    <input type="text" id="catalog-search" oninput="handleCatalogSearch()" placeholder="Search chandeliers, sockets, tracks..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-rp-card border border-white/10 text-white text-xs placeholder-gray-500 focus:outline-none focus:border-rp-gold">
+                </div>
+            </div>
+
+            <!-- Category Pills Filter Bar -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+                <button onclick="filterCatalog('all')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-gold text-rp-obsidian border border-rp-gold">
+                    All Products (<span id="count-all">0</span>)
+                </button>
+                <button onclick="filterCatalog('Chandeliers')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10">
+                    ✨ Chandeliers (<span id="count-chandeliers">0</span>)
+                </button>
+                <button onclick="filterCatalog('Wall Brackets')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10">
+                    💡 Wall Brackets (<span id="count-wall">0</span>)
+                </button>
+                <button onclick="filterCatalog('Hanging Lights')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10">
+                    🏮 Hanging Lights (<span id="count-hanging">0</span>)
+                </button>
+                <button onclick="filterCatalog('Sockets & Switches VIP')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10">
+                    🔌 VIP Switches & Sockets (<span id="count-sockets">0</span>)
+                </button>
+                <button onclick="filterCatalog('Magnetic Track & Profiles')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10">
+                    🧲 Magnetic Track & Profiles (<span id="count-tracks">0</span>)
+                </button>
+                <button onclick="filterCatalog('Panel Lights')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10">
+                    ☀️ Panel Lights (<span id="count-panels">0</span>)
+                </button>
+                <button onclick="filterCatalog('Decorative & Table Lamps')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10">
+                    🛋️ Table Lamps (<span id="count-lamps">0</span>)
+                </button>
+                <button onclick="filterCatalog('Electrical Wires & Cables')" class="cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10">
+                    ⚡ Cables & Wires (<span id="count-cables">0</span>)
+                </button>
+            </div>
+
+            <!-- Dynamic Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Injected via JavaScript from productsData -->
+            </div>
+
+            <!-- Empty Results Notice -->
+            <div id="no-results-msg" class="hidden text-center py-16">
+                <i class="fas fa-lightbulb text-gray-600 text-4xl mb-3"></i>
+                <p class="text-gray-400 font-medium">No matching products found. Try adjusting your keyword or category.</p>
+                <button onclick="filterCatalog('all')" class="mt-4 px-4 py-2 rounded-lg bg-rp-gold text-black text-xs font-bold">Reset Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- 5. SHOWROOM LOCATION, MAP & VISITING HOURS -->
+    <!-- ================================================================= -->
+    <section id="about-location" class="py-20 bg-rp-obsidian border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Physical Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-rp-gold text-xs font-bold tracking-widest uppercase block">Visit Our Showroom</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Experience the Quality in Person.</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Nothing matches seeing the genuine sparkle of our K9 crystal chandeliers or feeling the weighted click of our VIP tempered glass switches. Visit us on Duruma Road in Nyamakima, Nairobi.
                     </p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <button onclick="navigate('contact')" class="bg-rp-white text-rp-black px-6 py-3 rounded-md font-bold hover:bg-gray-200 transition-colors">
-                            Get Directions
-                        </button>
-                        <a href="https://wa.me/254721647578" target="_blank" class="bg-rp-gold text-rp-black px-6 py-3 rounded-md font-bold hover:bg-rp-gold-hover transition-colors flex items-center justify-center gap-2">
-                            <i class="fab fa-whatsapp text-lg"></i> Contact Us
+
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-start gap-3 p-3.5 rounded-xl bg-rp-surface border border-white/10">
+                            <i class="fas fa-map-location-dot text-rp-gold text-lg mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-white block">Physical Location:</span>
+                                <span class="text-gray-400 text-xs">Duruma Road, Nyamakima, Next to Kirk House, Nairobi City Centre.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3.5 rounded-xl bg-rp-surface border border-white/10">
+                            <i class="fas fa-clock text-rp-gold text-lg mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-white block">Working Hours:</span>
+                                <span class="text-gray-400 text-xs">Monday to Saturday: 8:00 AM – 6:00 PM (Closed Sundays)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3.5 rounded-xl bg-rp-surface border border-white/10">
+                            <i class="fas fa-phone-volume text-rp-gold text-lg mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-white block">Direct Showroom Lines:</span>
+                                <span class="text-gray-400 text-xs">+254 721 647 578 / threeplimited@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://wa.me/254721647578?text=Hello%20Ripple%20P%2C%20please%20send%20me%20your%20exact%20Google%20Maps%20pin%20and%20directions%20to%20the%20showroom." target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow transition">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                            <span>Request Directions / Map Pin on WhatsApp</span>
                         </a>
                     </div>
                 </div>
+
+                <!-- Interactive Map / Showroom Card -->
+                <div class="lg:col-span-7 glass-card rounded-2xl p-4 sm:p-6 overflow-hidden">
+                    <div class="rounded-xl overflow-hidden aspect-[16/10] bg-gray-900 border border-white/10 relative">
+                        <!-- Embedded Google Maps Coordinates for Duruma Road Nyamakima -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8184567704257!2d36.82622517585098!3d-1.2827725987050518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d5402fa627%3A0xe518428388ffc08!2sDuruma%20Rd%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1727181000000!5m2!1sen!2ske" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade" 
+                            class="w-full h-full filter contrast-125 opacity-90">
+                        </iframe>
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="page-contact" class="page-section bg-rp-grey min-h-screen pt-10 pb-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h1 class="text-4xl font-bold text-rp-black mb-4">Get in Touch</h1>
-                    <div class="h-1 w-20 bg-rp-gold mx-auto"></div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    <!-- Contact Cards -->
-                    <div class="bg-rp-white p-7 rounded-xl shadow-sm text-center">
-                        <div class="w-14 h-14 bg-rp-grey rounded-full flex items-center justify-center mx-auto mb-4 text-rp-black text-xl">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">Call Us</h3>
-                        <p class="text-gray-600 mb-4 font-medium text-sm">+254 721 647 578</p>
-                        <a href="tel:+254721647578" class="text-rp-gold font-semibold hover:underline text-sm">Call Now</a>
-                    </div>
-
-                    <div class="bg-rp-white p-7 rounded-xl shadow-sm text-center border-b-4 border-rp-gold">
-                        <div class="w-14 h-14 bg-[#25D366]/10 rounded-full flex items-center justify-center mx-auto mb-4 text-[#25D366] text-2xl">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">WhatsApp</h3>
-                        <p class="text-gray-600 mb-4 font-medium text-sm">+254 721 647 578</p>
-                        <a href="https://wa.me/254721647578" target="_blank" class="text-[#25D366] font-semibold hover:underline text-sm">Chat on WhatsApp</a>
-                    </div>
-
-                    <div class="bg-rp-white p-7 rounded-xl shadow-sm text-center">
-                        <div class="w-14 h-14 bg-rp-grey rounded-full flex items-center justify-center mx-auto mb-4 text-rp-black text-xl">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">Email</h3>
-                        <p class="text-gray-600 mb-4 font-medium text-sm break-all">threeplimited@gmail.com</p>
-                        <a href="mailto:threeplimited@gmail.com" class="text-rp-gold font-semibold hover:underline text-sm">Send Email</a>
-                    </div>
-
-                    <div class="bg-rp-white p-7 rounded-xl shadow-sm text-center border-b-4 border-[#E1306C]">
-                        <div class="w-14 h-14 bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-sm">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">Social Media</h3>
-                        <div class="space-y-1 mb-4 text-xs font-semibold text-gray-700">
-                            <p><i class="fab fa-instagram text-[#E1306C] mr-1"></i> ripplep_electricals</p>
-                            <p><i class="fab fa-facebook text-[#1877F2] mr-1"></i> 3P Electricals</p>
-                        </div>
-                        <div class="flex justify-center gap-2">
-                            <a href="https://www.instagram.com/ripplep_electricals/" target="_blank" rel="noopener noreferrer" class="text-xs px-3 py-1 rounded-full bg-[#E1306C] text-white font-medium hover:opacity-90 transition-opacity">Instagram</a>
-                            <a href="https://www.facebook.com/profile.php?id=61565559560936" target="_blank" rel="noopener noreferrer" class="text-xs px-3 py-1 rounded-full bg-[#1877F2] text-white font-medium hover:opacity-90 transition-opacity">Facebook</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Contact Form -->
-                    <div class="bg-rp-white p-8 rounded-xl shadow-sm">
-                        <h3 class="text-2xl font-bold text-rp-black mb-6">Send a Message</h3>
-                        <form onsubmit="handleContactSubmit(event)">
-                            <!-- Anti-bot honeypot field (hidden from real users) -->
-                            <input type="text" id="contact-trap" name="security_hp" style="display:none !important; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
-
-                            <div class="mb-4">
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Name *</label>
-                                <input type="text" id="contact-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="Your Name" required>
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Phone / WhatsApp *</label>
-                                <input type="tel" id="contact-phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="Your Phone Number" required>
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
-                                <input type="email" id="contact-email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="Your Email">
-                            </div>
-                            <div class="mb-6">
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Message *</label>
-                                <textarea id="contact-msg" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-rp-gold" placeholder="How can we help you?" required></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-rp-black text-rp-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
-                                <i class="fab fa-whatsapp text-lg"></i> Send Enquiry via WhatsApp
-                            </button>
-                        </form>
-                        <div class="mt-6 p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-3">
-                            <i class="fas fa-shield-alt text-amber-600 text-base mt-0.5 flex-shrink-0"></i>
-                            <div>
-                                <p class="font-bold mb-1">Official Anti-Fraud &amp; Verification Advisory</p>
-                                <p class="text-amber-800 leading-relaxed">
-                                    All legitimate orders, quotations, and official payments are handled solely via our verified phone line <strong>+254 721 647 578</strong> or in person at our physical shop on <strong>Duruma Road, Nyamakima, Nairobi</strong>. Never send funds to unverified personal numbers or third parties.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Location details -->
-                    <div class="flex flex-col">
-                        <div class="bg-rp-white p-8 rounded-xl shadow-sm mb-8 flex-grow">
-                            <h3 class="text-2xl font-bold text-rp-black mb-6">Visit Our Shop</h3>
-                            <div class="flex items-start mb-4">
-                                <i class="fas fa-map-marker-alt mt-1 text-rp-gold mr-3"></i>
-                                <div>
-                                    <p class="font-semibold text-rp-black">Shop Location</p>
-                                    <p class="text-gray-800 font-bold text-base">Ripple P Electricals</p>
-                                    <p class="text-gray-700 font-medium">Duruma Road, Next to Kirk House (Near Gari za Othaya)</p>
-                                    <p class="text-gray-600">Nyamakima, Nairobi CBD, Kenya</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start mb-4">
-                                <i class="fas fa-phone-alt mt-1 text-rp-gold mr-3"></i>
-                                <div>
-                                    <p class="font-semibold text-rp-black">Phone & WhatsApp</p>
-                                    <a href="tel:+254721647578" class="text-gray-700 hover:text-rp-gold font-medium">0721 647 578 / +254 721 647 578</a>
-                                </div>
-                            </div>
-                            <div class="flex items-start mb-6">
-                                <i class="fas fa-clock mt-1 text-rp-gold mr-3"></i>
-                                <div>
-                                    <p class="font-semibold text-rp-black">Opening Hours</p>
-                                    <p class="text-gray-600">Monday - Saturday: 8:00 AM - 6:00 PM</p>
-                                    <p class="text-gray-600">Sunday: Closed (Orders on WhatsApp)</p>
-                                </div>
-                            </div>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Ripple+P+electricals,+Duruma+Road,+Nairobi" target="_blank" class="block text-center w-full bg-rp-black text-rp-white font-bold py-3 px-6 rounded-md hover:bg-rp-gold hover:text-rp-black transition-colors">
-                                <i class="fas fa-directions mr-2"></i> Get Directions (Google Maps)
-                            </a>
-                        </div>
-
-                        <!-- Embedded Google Map -->
-                        <div class="rounded-xl overflow-hidden shadow-sm h-80 relative border border-gray-200">
-                            <iframe 
-                                title="Ripple P Electricals Location Map"
-                                src="https://maps.google.com/maps?q=Ripple+P+electricals,+Duruma+Road,+Nairobi&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                                width="100%" 
-                                height="100%" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
+    <!-- Footer -->
+    <footer class="bg-[#05070A] border-t border-white/5 py-12 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <span class="text-white font-bold text-sm">RIPPLE P ELECTRICALS</span>
+                <p class="text-gray-400 mt-1">Three P Limited • Registered Electrical & Architectural Lighting Importer • Nairobi, Kenya</p>
+                <p class="text-gray-600 text-[11px] mt-0.5">© 2026 Ripple P Electricals. All rights reserved.</p>
             </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-rp-black text-rp-white pt-16 pb-8 border-t-4 border-rp-gold">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-                <div class="col-span-1 md:col-span-1">
-                    <span class="font-bold text-2xl tracking-tight block mb-4">RIPPLE P <span class="text-rp-gold">ELECTRICALS</span></span>
-                    <p class="text-gray-400 text-sm mb-6">
-                        Premium lighting and electrical products for retail and wholesale customers across Kenya.
-                    </p>
-                    <div class="flex flex-col space-y-3">
-                        <div class="flex space-x-3">
-                            <a href="https://www.facebook.com/profile.php?id=61565559560936" target="_blank" rel="noopener noreferrer" title="Facebook - 3P Electricals" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#1877F2] hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.instagram.com/ripplep_electricals/" target="_blank" rel="noopener noreferrer" title="Instagram - @ripplep_electricals" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#E1306C] hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
-                            <a href="https://wa.me/254721647578" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-colors"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                        <div class="text-xs text-gray-400 space-y-1">
-                            <p><a href="https://www.instagram.com/ripplep_electricals/" target="_blank" class="hover:text-rp-gold transition-colors flex items-center gap-1.5"><i class="fab fa-instagram text-[#E1306C]"></i> @ripplep_electricals</a></p>
-                            <p><a href="https://www.facebook.com/profile.php?id=61565559560936" target="_blank" class="hover:text-rp-gold transition-colors flex items-center gap-1.5"><i class="fab fa-facebook text-[#1877F2]"></i> 3P Electricals</a></p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-4 text-rp-gold">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><button onclick="navigate('home')" class="hover:text-rp-white transition-colors">Home</button></li>
-                        <li><button onclick="navigate('products')" class="hover:text-rp-white transition-colors">Products</button></li>
-                        <li><button onclick="navigate('wholesale')" class="hover:text-rp-white transition-colors">Wholesale & Bulk</button></li>
-                        <li><button onclick="navigate('about')" class="hover:text-rp-white transition-colors">About Us</button></li>
-                        <li><button onclick="navigate('contact')" class="hover:text-rp-white transition-colors">Contact</button></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold text-lg mb-4 text-rp-gold">Categories</h4>
-                    <ul class="space-y-2 text-gray-400">
-                                                <li><button onclick="navigate('products'); filterProducts('Chandeliers')" class="hover:text-rp-white transition-colors">Chandeliers</button></li>
-                        <li><button onclick="navigate('products'); filterProducts('Wall Brackets')" class="hover:text-rp-white transition-colors">Wall Brackets</button></li>
-                        <li><button onclick="navigate('products'); filterProducts('Hanging Lights')" class="hover:text-rp-white transition-colors">Hanging Lights</button></li>
-                        <li><button onclick="navigate('products'); filterProducts('Sockets & Switches VIP')" class="hover:text-rp-white transition-colors">Sockets & Switches VIP</button></li>
-                        <li><button onclick="navigate('products'); filterProducts('Magnetic Track & Profiles')" class="hover:text-rp-white transition-colors">Magnetic Track & Profiles</button></li>
-                        <li><button onclick="navigate('products'); filterProducts('Panel Lights')" class="hover:text-rp-white transition-colors">Panel Lights</button></li>
-                        <li><button onclick="navigate('products'); filterProducts('Decorative & Table Lamps')" class="hover:text-rp-white transition-colors">Decorative Lamps</button></li>
-                        <li><button onclick="navigate('products'); filterProducts('Electrical Wires & Cables')" class="hover:text-rp-white transition-colors">Wires & Cables</button></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold text-lg mb-4 text-rp-gold">Contact Info</h4>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-rp-gold"></i>
-                            <span>Ripple P Electricals, Duruma Road<br>Next to Kirk House, Nyamakima, Nairobi CBD</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone-alt mr-3 text-rp-gold"></i>
-                            <a href="tel:+254721647578" class="hover:text-rp-white transition-colors">0721 647 578 / +254 721 647 578</a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fab fa-whatsapp mr-3 text-[#25D366]"></i>
-                            <a href="https://wa.me/254721647578" target="_blank" class="hover:text-rp-white transition-colors">+254 721 647 578</a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-3 text-rp-gold"></i>
-                            <a href="mailto:threeplimited@gmail.com" class="hover:text-rp-white transition-colors">threeplimited@gmail.com</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 text-center flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <p>&copy; 2026 Ripple P Electricals. All rights reserved.</p>
-                <p class="mt-2 md:mt-0">Designed for Professional Supply</p>
+            <div class="flex items-center gap-6">
+                <a href="#hero" class="hover:text-rp-gold transition">Top</a>
+                <a href="#catalog" class="hover:text-rp-gold transition">Catalog</a>
+                <a href="#boq-estimator" class="hover:text-rp-gold transition">BoQ Quote</a>
+                <a href="https://wa.me/254721647578" target="_blank" class="text-emerald-400 hover:underline">WhatsApp Contact</a>
             </div>
         </div>
     </footer>
 
+    <!-- Floating Quick WhatsApp Button (Reveals on Scroll) -->
+    <div id="floating-wa" class="fixed bottom-6 right-6 z-50 opacity-0 pointer-events-none transition-all duration-300 transform translate-y-2">
+        <a href="https://wa.me/254721647578?text=Hello%20Ripple%20P%2C%20I%20am%20browsing%20your%20website%20and%20would%20like%20to%20inquire%20about%20lighting%20prices." 
+           target="_blank" 
+           class="flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebd5b] text-white font-extrabold px-4 py-3 rounded-full shadow-2xl shadow-[#25D366]/40 transition transform hover:scale-105 group" 
+           aria-label="Direct WhatsApp Chat">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+            </span>
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span class="hidden sm:inline text-xs">Chat on WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- Product Inspection Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-card rounded-2xl max-w-2xl w-full p-6 relative border border-rp-gold/30">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                <div class="aspect-square rounded-xl overflow-hidden bg-black/50 border border-white/10">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-4">
+                    <span id="modal-category" class="inline-block bg-rp-gold/10 text-rp-gold text-[10px] font-bold px-2 py-0.5 rounded uppercase"></span>
+                    <h3 id="modal-title" class="text-xl font-bold text-white"></h3>
+                    <p id="modal-desc" class="text-xs text-gray-300 leading-relaxed"></p>
+                    <div class="pt-3 border-t border-white/10 space-y-2">
+                        <a id="modal-wa-link" href="" target="_blank" class="w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+                            <i class="fab fa-whatsapp text-base"></i> Inquire via WhatsApp
+                        </a>
+                        <a href="tel:+254721647578" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 transition">
+                            <i class="fas fa-phone-alt text-xs text-rp-gold"></i> Call Showroom
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load the Full 50+ Product Dataset -->
+    <script src="products_data.js"></script>
+
+    <!-- Application Script: 3D Lighting Canvas, Dynamic Filter & BoQ Estimator -->
     <script>
-        // Data: Placeholder Products
-        // Designed carefully so real products can easily replace them
-        const productsData = [
-        {
-                "id": 1,
-                "name": "RFCH20055-500 Round Gold Crystal Chandelier",
-                "category": "Chandeliers",
-                "type": "Luxury Crystal",
-                "desc": "Grand 500mm circular chandelier featuring layered K9 crystals encased in a sculpted ornate gold band.",
-                "img": "photos/1. Chandeliers/crystal-round-gold-chandelier-rfch20055-500.jpeg"
-        },
-        {
-                "id": 2,
-                "name": "RFCH20056-400 Tiered Crystal Gold Chandelier",
-                "category": "Chandeliers",
-                "type": "Luxury Crystal",
-                "desc": "Sophisticated 400mm circular gold chandelier with cascading multi-tier sparkling crystal prisms.",
-                "img": "photos/1. Chandeliers/crystal-round-gold-chandelier-rfch20056-400.jpeg"
-        },
-        {
-                "id": 3,
-                "name": "Modern Orbital Ring & Globe Chandelier",
-                "category": "Chandeliers",
-                "type": "Contemporary LED",
-                "desc": "Striking architectural ring chandelier with suspended spherical frosted globes and black/gold finish.",
-                "img": "photos/1. Chandeliers/modern-circular-ring-globe-chandelier.jpeg"
-        },
-        {
-                "id": 4,
-                "name": "Vintage Wooden Beam 6-Rope Chandelier (D021-6)",
-                "category": "Chandeliers",
-                "type": "Rustic / Vintage",
-                "desc": "Rustic solid wooden beam wrapped in natural hemp ropes with 6 Edison bulb pendant drops.",
-                "img": "photos/1. Chandeliers/wooden-beam-6-rope-chandelier-d021-6.jpeg"
-        },
-        {
-                "id": 5,
-                "name": "Vintage Wooden Beam 5-Rope Chandelier (D019-5)",
-                "category": "Chandeliers",
-                "type": "Rustic / Vintage",
-                "desc": "Natural wood bar chandelier with 5 wound thick rope drops and protective metal bulb cages.",
-                "img": "photos/1. Chandeliers/wooden-beam-5-rope-chandelier-d019-5.jpeg"
-        },
-        {
-                "id": 6,
-                "name": "Linear 4-Cage Black Island Chandelier",
-                "category": "Chandeliers",
-                "type": "Industrial Island",
-                "desc": "Matte black linear ceiling fixture with 4 geometric frame cages. Ideal for dining tables & kitchen islands.",
-                "img": "photos/1. Chandeliers/linear-4-cage-island-chandelier.jpeg"
-        },
-        {
-                "id": 7,
-                "name": "RFCH20056-500 Grand Crystal Gold Chandelier",
-                "category": "Chandeliers",
-                "type": "Luxury Crystal",
-                "desc": "500mm diameter high-end crystal chandelier with brilliant warm illumination and crown metal border.",
-                "img": "photos/1. Chandeliers/crystal-round-gold-chandelier-rfch20056-500.jpeg"
-        },
-        {
-                "id": 8,
-                "name": "Modern Vertical Acrylic LED Wall Bracket (28x8cm)",
-                "category": "Wall Brackets",
-                "type": "LED Wall Sconce",
-                "desc": "Sleek 28cm curved clear acrylic sconce with laser-etched light guides and matte black wall mount.",
-                "img": "photos/2. Wall Brackets/vertical-acrylic-led-wall-bracket-28x8cm.jpeg"
-        },
-        {
-                "id": 9,
-                "name": "Curved Ribbon Gold LED Wall Bracket",
-                "category": "Wall Brackets",
-                "type": "Designer Sconce",
-                "desc": "Artistic golden wave LED wall light providing ambient textured indirect lighting for lounges.",
-                "img": "photos/2. Wall Brackets/modern-curved-gold-led-wall-bracket.jpeg"
-        },
-        {
-                "id": 10,
-                "name": "Modern Double Spiral LED Wall Sconce (Gold/White)",
-                "category": "Wall Brackets",
-                "type": "Spiral Sconce",
-                "desc": "Dual intertwined helical ribbons in satin gold and white with high-efficiency diffused warm LED.",
-                "img": "photos/2. Wall Brackets/double-spiral-wall-bracket-gold-white.jpeg"
-        },
-        {
-                "id": 11,
-                "name": "Modern Double Spiral LED Wall Sconce (Black/Gold)",
-                "category": "Wall Brackets",
-                "type": "Spiral Sconce",
-                "desc": "Matte black and gold dual helix wall bracket creating a stunning modern statement on any wall.",
-                "img": "photos/2. Wall Brackets/double-spiral-wall-bracket-black-gold.jpeg"
-        },
-        {
-                "id": 12,
-                "name": "Twin Glass Cylinder Wall Sconce",
-                "category": "Wall Brackets",
-                "type": "Glass Sconce",
-                "desc": "Double clear ribbed glass cylinder sconces with exposed warm filaments on matte black armature.",
-                "img": "photos/2. Wall Brackets/double-glass-cylinder-wall-sconce.jpeg"
-        },
-        {
-                "id": 13,
-                "name": "Luxury Crystal Torch Wall Bracket",
-                "category": "Wall Brackets",
-                "type": "Crystal Sconce",
-                "desc": "Torch-style multifaceted crystal wall sconce that casts brilliant radiant light patterns across corridors.",
-                "img": "photos/2. Wall Brackets/crystal-torch-luxury-wall-bracket.jpeg"
-        },
-        {
-                "id": 14,
-                "name": "Architectural Up & Down Wall Light",
-                "category": "Wall Brackets",
-                "type": "Minimal Sconce",
-                "desc": "Minimalist rectangular wall bracket casting bidirectional warm light wash up and down interior surfaces.",
-                "img": "photos/2. Wall Brackets/up-down-glowing-minimal-wall-sconce.jpeg"
-        },
-        {
-                "id": 15,
-                "name": "Playful Monkey Wall Sconce Lamp",
-                "category": "Wall Brackets",
-                "type": "Novelty Sconce",
-                "desc": "Characterful sculpted climbing monkey wall bracket holding an exposed filament tube lamp.",
-                "img": "photos/2. Wall Brackets/monkey-wall-bracket-lamp-black.jpeg"
-        },
-        {
-                "id": 16,
-                "name": "Triple Glass Globe Linear Island Pendant",
-                "category": "Hanging Lights",
-                "type": "Pendant Set",
-                "desc": "3 suspended amber glass globes mounted on a streamlined matte black horizontal ceiling track.",
-                "img": "photos/3. Hanging Lights/3-globe-glass-linear-pendant-light.jpeg"
-        },
-        {
-                "id": 17,
-                "name": "Triple Glass Globe Cluster Pendant (Round Canopy)",
-                "category": "Hanging Lights",
-                "type": "Pendant Set",
-                "desc": "Staggered trio of translucent glass sphere pendants suspended from a central round ceiling plate.",
-                "img": "photos/3. Hanging Lights/3-globe-glass-round-pendant-light.jpeg"
-        },
-        {
-                "id": 18,
-                "name": "Smoke Glass Globe Single Pendant Light",
-                "category": "Hanging Lights",
-                "type": "Single Pendant",
-                "desc": "Modern gradient smoked glass globe with black cap, perfect for bar counters and bedside corners.",
-                "img": "photos/3. Hanging Lights/smoke-glass-globe-single-pendant.jpeg"
-        },
-        {
-                "id": 19,
-                "name": "White Geometric Cage Pendant (GPDL-8623-1 WH)",
-                "category": "Hanging Lights",
-                "type": "Wire Pendant",
-                "desc": "Crossed wire geometric cylinder in clean white finish enclosing a clear glass hurricane shade.",
-                "img": "photos/3. Hanging Lights/white-wire-cylinder-pendant-gpdl-8623-1-wh.jpeg"
-        },
-        {
-                "id": 20,
-                "name": "White Diamond Geometric Pendant (GPDL-8625-1 WH)",
-                "category": "Hanging Lights",
-                "type": "Wire Pendant",
-                "desc": "Sculpted diamond lattice cage pendant light in crisp powder-coated white with gold interior socket.",
-                "img": "photos/3. Hanging Lights/white-diamond-cage-pendant-gpdl-8625-1-wh.jpeg"
-        },
-        {
-                "id": 21,
-                "name": "White Slotted Lantern Pendant (GPDL-8618-1 WH)",
-                "category": "Hanging Lights",
-                "type": "Geometric Lantern",
-                "desc": "Contemporary rectangular slotted lantern pendant casting patterned shadows and ambient glow.",
-                "img": "photos/3. Hanging Lights/white-geometric-lantern-pendant-gpdl-8618-1-wh.jpeg"
-        },
-        {
-                "id": 22,
-                "name": "Linear 3-Light Cage & Timber Island Pendant",
-                "category": "Hanging Lights",
-                "type": "Wood & Wire",
-                "desc": "Black cylindrical wire cages with genuine natural wood ring collars on a triple bar suspension.",
-                "img": "photos/3. Hanging Lights/3-light-cage-wood-linear-pendant.jpeg"
-        },
-        {
-                "id": 23,
-                "name": "Trio Designer Black & Gold Pendant Set",
-                "category": "Hanging Lights",
-                "type": "Designer Pendant",
-                "desc": "Three complementary geometric wire and sphere pendant lights with luxurious brass gold accents.",
-                "img": "photos/3. Hanging Lights/trio-decorative-black-gold-pendants.jpeg"
-        },
-        {
-                "id": 24,
-                "name": "Panda Climbing Rope Pendant Light",
-                "category": "Hanging Lights",
-                "type": "Novelty Pendant",
-                "desc": "Whimsical climbing panda holding a downward spotlight while hanging on a sturdy thick rope.",
-                "img": "photos/3. Hanging Lights/panda-hanging-rope-pendant-light.jpeg"
-        },
-        {
-                "id": 25,
-                "name": "Golden Monkey Hanging Rope Pendant Light",
-                "category": "Hanging Lights",
-                "type": "Novelty Pendant",
-                "desc": "Sculpted metallic gold monkey suspended on rope holding an adjustable spotlight.",
-                "img": "photos/3. Hanging Lights/gold-monkey-hanging-rope-pendant-light.jpeg"
-        },
-        {
-                "id": 26,
-                "name": "MOONLIGHT VIP Luxury Switch & Socket Series",
-                "category": "Sockets & Switches VIP",
-                "type": "VIP Series",
-                "desc": "Champagne ivory body framed with a mirror-finish gold chrome beveled rim. Complete matching set.",
-                "img": "photos/4. Sockets and Switches VIP/moonlight-gold-trim-vip-switches.jpeg"
-        },
-        {
-                "id": 27,
-                "name": "PURPLE VIP Modern Switch & Socket Series",
-                "category": "Sockets & Switches VIP",
-                "type": "VIP Series",
-                "desc": "Soft slate grey faceplates framed with opulent gold trims. 1-4 gang, 13A twin sockets & cooker units.",
-                "img": "photos/4. Sockets and Switches VIP/purple-gold-trim-vip-switches.jpeg"
-        },
-        {
-                "id": 28,
-                "name": "C75 GOLD / Gold Chrome VIP Series",
-                "category": "Sockets & Switches VIP",
-                "type": "VIP Series",
-                "desc": "Full gold metallic faceplates with matching gold bevel trims for ultra-luxurious interiors.",
-                "img": "photos/4. Sockets and Switches VIP/c75-gold-chrome-vip-switches.jpeg"
-        },
-        {
-                "id": 29,
-                "name": "C85 GREY BRUSHED VIP Series",
-                "category": "Sockets & Switches VIP",
-                "type": "VIP Series",
-                "desc": "Brushed titanium grey textures providing subtle elegance, scratch resistance, and modern aesthetics.",
-                "img": "photos/4. Sockets and Switches VIP/c85-grey-brushed-vip-switches.jpeg"
-        },
-        {
-                "id": 30,
-                "name": "W1 GREY ACRYLIC VIP Series",
-                "category": "Sockets & Switches VIP",
-                "type": "VIP Series",
-                "desc": "Gloss acrylic finish in modern neutral grey with smooth mechanical switches and neon indicators.",
-                "img": "photos/4. Sockets and Switches VIP/w1-grey-acrylic-vip-switches.jpeg"
-        },
-        {
-                "id": 31,
-                "name": "X10 BLACK / Gold Chrome VIP Series",
-                "category": "Sockets & Switches VIP",
-                "type": "VIP Series",
-                "desc": "Deep matte black finish accented with bright gold chrome borders. High-contrast luxury.",
-                "img": "photos/4. Sockets and Switches VIP/x10-black-gold-chrome-vip-switches.jpeg"
-        },
-        {
-                "id": 32,
-                "name": "X71 BLACK / Gun Chrome VIP Series",
-                "category": "Sockets & Switches VIP",
-                "type": "VIP Series",
-                "desc": "Understated midnight black paired with polished gunmetal chrome borders for executive spaces.",
-                "img": "photos/4. Sockets and Switches VIP/x71-black-gun-chrome-vip-switches.jpeg"
-        },
-        {
-                "id": 33,
-                "name": "Luxury Metallic Dual Sockets & Switch Modules",
-                "category": "Sockets & Switches VIP",
-                "type": "Premium Sockets",
-                "desc": "Modular 13A twin switched sockets with red status rockers and solid brushed metallic faceplates.",
-                "img": "photos/4. Sockets and Switches VIP/luxury-metallic-dual-socket-switches.jpeg"
-        },
-        {
-                "id": 34,
-                "name": "Modular Silver-Grey Switches & Sockets Set",
-                "category": "Sockets & Switches VIP",
-                "type": "Modular Series",
-                "desc": "High-durability residential and commercial switches with clean frameless modular layout.",
-                "img": "photos/4. Sockets and Switches VIP/modern-modular-silver-grey-switches.jpeg"
-        },
-        {
-                "id": 35,
-                "name": "Magnetic Track Linear Flood Module (CV21 FGD 300)",
-                "category": "Magnetic Track & Profiles",
-                "type": "Track Module",
-                "desc": "Snap-in magnetic low-voltage linear LED light bar providing smooth 120\u00b0 diffused floodlighting.",
-                "img": "photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-linear-flood-cv21-fgd-300.jpeg"
-        },
-        {
-                "id": 36,
-                "name": "20W Foldable Magnetic Track Spotlight",
-                "category": "Magnetic Track & Profiles",
-                "type": "Track Spotlight",
-                "desc": "Heavy-duty 20W magnetic spotlight with 90\u00b0 folding arm and 360\u00b0 rotation for directional accent lighting.",
-                "img": "photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-20w-foldable-spotlight.jpeg"
-        },
-        {
-                "id": 37,
-                "name": "Magnetic Track Cylindrical Pendant Spotlight",
-                "category": "Magnetic Track & Profiles",
-                "type": "Track Pendant",
-                "desc": "Suspended cylindrical track head that snaps into the track channel for focused task illumination.",
-                "img": "photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-cylindrical-pendant-spotlight.jpeg"
-        },
-        {
-                "id": 38,
-                "name": "Magnetic Track Multi-Spot Linear Grille",
-                "category": "Magnetic Track & Profiles",
-                "type": "Anti-Glare Grille",
-                "desc": "Recessed micro-reflector grille module eliminating glare while delivering high-intensity pinpoint light.",
-                "img": "photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-multi-spot-linear-grille.jpeg"
-        },
-        {
-                "id": 39,
-                "name": "Magnetic Flexible & Angle Connectors",
-                "category": "Magnetic Track & Profiles",
-                "type": "Connectors",
-                "desc": "Flexible joints and recessed 90\u00b0 corner connectors for continuous seamless ceiling-to-wall track runs.",
-                "img": "photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-flexible-angle-connector.jpeg"
-        },
-        {
-                "id": 40,
-                "name": "Recessed Channel Aluminium Profile Extrusions",
-                "category": "Magnetic Track & Profiles",
-                "type": "Profile Channel",
-                "desc": "Anodized architectural aluminium channel extrusions with frosted diffusers for flush ceiling LED strips.",
-                "img": "photos/5. Magnetic Track Lights and Aluminium Profiles/aluminium-profile-recessed-channel-extrusion.jpeg"
-        },
-        {
-                "id": 41,
-                "name": "Staircase LED Profile Installation",
-                "category": "Magnetic Track & Profiles",
-                "type": "Installation Showcase",
-                "desc": "Real installation showcasing vertical and step-edge aluminium profile LED strips in modern stairs.",
-                "img": "photos/5. Magnetic Track Lights and Aluminium Profiles/aluminium-profile-staircase-led-strip-install.jpeg"
-        },
-        {
-                "id": 42,
-                "name": "Recessed Track Living Room Ceiling System",
-                "category": "Magnetic Track & Profiles",
-                "type": "Installation Showcase",
-                "desc": "Architectural magnetic track system installed in geometric rectangular recessed patterns.",
-                "img": "photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-living-room-ceiling-layout.jpeg"
-        },
-        {
-                "id": 43,
-                "name": "Dual-Color Rim-Glow Surface LED Panel Lights",
-                "category": "Panel Lights",
-                "type": "Surface Panel",
-                "desc": "Decorative round LED panel light featuring dual illumination: center daylight with vibrant blue/gold outer halo.",
-                "img": "photos/6. Panel Lights/dual-color-rim-glow-surface-panel-lights.jpeg"
-        },
-        {
-                "id": 44,
-                "name": "Round Surface-Mount LED Panel Light",
-                "category": "Panel Lights",
-                "type": "Surface Panel",
-                "desc": "Ultra-bright frosted diffuser panel for ceiling surface installation without requiring cut-outs.",
-                "img": "photos/6. Panel Lights/round-surface-led-panel-light.jpeg"
-        },
-        {
-                "id": 45,
-                "name": "Slim-Rim Recessed Round LED Panel",
-                "category": "Panel Lights",
-                "type": "Recessed Panel",
-                "desc": "Micro-bezel downlight panel providing wide 160\u00b0 diffuse beam angle for general room lighting.",
-                "img": "photos/6. Panel Lights/round-slim-rim-led-panel-light.jpeg"
-        },
-        {
-                "id": 46,
-                "name": "Deep Anti-Glare Recessed Spotlight Fitting",
-                "category": "Panel Lights",
-                "type": "Spotlight Fitting",
-                "desc": "Deep black recessed funnel fitting with bright orange spring clips to minimize visual eye glare.",
-                "img": "photos/6. Panel Lights/deep-black-recessed-downlight-spot-fitting.jpeg"
-        },
-        {
-                "id": 47,
-                "name": "ATTA RH-MH6 Triple Square Spotlight Fitting",
-                "category": "Panel Lights",
-                "type": "Multi-Spot Fitting",
-                "desc": "Commercial 3-lamp square recessed fixture with dual-tone black frame and gold inner reflector rings.",
-                "img": "photos/6. Panel Lights/atta-spotlight-fitting-triple-square-rh-mh6.jpeg"
-        },
-        {
-                "id": 48,
-                "name": "Square Double Spotlight Fitting (Black & Gold)",
-                "category": "Panel Lights",
-                "type": "Multi-Spot Fitting",
-                "desc": "Dual spotlight housing in textured matte black with warm gold reflector trims. Fits standard spots.",
-                "img": "photos/6. Panel Lights/square-double-spotlight-fitting-black-gold.jpeg"
-        },
-        {
-                "id": 49,
-                "name": "Square Double Spotlight Fitting (Pure White)",
-                "category": "Panel Lights",
-                "type": "Multi-Spot Fitting",
-                "desc": "Clean white 2-lamp recessed spotlight fitting blending seamlessly with gypsum plasterboard ceilings.",
-                "img": "photos/6. Panel Lights/square-double-spotlight-fitting-white.jpeg"
-        },
-        {
-                "id": 50,
-                "name": "Tricolor 3-in-1 LED Downlight",
-                "category": "Panel Lights",
-                "type": "Tricolor Downlight",
-                "desc": "Switchable color temperatures: Warm White (3000K), Daylight (4000K), and Cool White (6500K) in one unit.",
-                "img": "photos/6. Panel Lights/tricolor-led-downlight-3000k-4000k-6500k.jpeg"
-        },
-        {
-                "id": 51,
-                "name": "Round COB LED Spotlights in White & Black",
-                "category": "Panel Lights",
-                "type": "COB Downlight",
-                "desc": "High-lumen COB chip recessed downlights with aluminum heatsink and directional eyeball tilt.",
-                "img": "photos/6. Panel Lights/round-cob-led-spotlights-white-black.jpeg"
-        },
-        {
-                "id": 52,
-                "name": "GU10 Directional Spotlight Fittings",
-                "category": "Panel Lights",
-                "type": "GU10 Fittings",
-                "desc": "Universal GU10 lamp holders in round & square profiles with anti-glare recessed baffles.",
-                "img": "photos/6. Panel Lights/gu10-spotlight-fittings-round-square.jpeg"
-        },
-        {
-                "id": 53,
-                "name": "Golden Monkey Table Lamp with Filament Bulb",
-                "category": "Decorative & Table Lamps",
-                "type": "Table Lamp",
-                "desc": "Cast metallic gold monkey statue standing on pedestal base holding an upright vintage LED lamp.",
-                "img": "photos/7. Decorative and Table Lamps/gold-monkey-table-lamp.jpeg"
-        },
-        {
-                "id": 54,
-                "name": "Black Monkey Table Lamp with Globe Bulb",
-                "category": "Decorative & Table Lamps",
-                "type": "Table Lamp",
-                "desc": "Playful matte black monkey table figurine holding an oversized exposed filament globe bulb.",
-                "img": "photos/7. Decorative and Table Lamps/black-monkey-table-lamp-globe-bulb.jpeg"
-        },
-        {
-                "id": 55,
-                "name": "RFC270272-300 Round Crystal Ring Chandelier",
-                "category": "Chandeliers",
-                "type": "Luxury Crystal Ring",
-                "desc": "Grand 300mm circular chandelier adorned with double-layered faceted K9 crystals and warm gold rim lighting.",
-                "img": "photos/1. Chandeliers/crystal-ring-chandelier-rfc270272-300.jpeg"
-        },
-        {
-                "id": 56,
-                "name": "RFC270313-400 Frosted Ice Crystal Ring Chandelier",
-                "category": "Chandeliers",
-                "type": "Ice Crystal Ring",
-                "desc": "Stunning 400mm halo chandelier encrusted with textured frosted ice crystal baguettes and embedded warm ambient LED glow.",
-                "img": "photos/1. Chandeliers/ice-crystal-ring-chandelier-rfc270313-400.jpeg"
-        },
-        {
-                "id": 57,
-                "name": "CH20001 Luxury Black & Gold Crystal Island Chandelier",
-                "category": "Chandeliers",
-                "type": "Tiered Crystal Island",
-                "desc": "Grand 800x300mm oval/rectangular chandelier featuring dual-tone matte black & gold fluted collar with cascading tiered crystal prisms.",
-                "img": "photos/1. Chandeliers/luxury-black-gold-crystal-chandelier-ch20001.jpeg"
-        },
-        {
-                "id": 58,
-                "name": "RFCH80032-1P Geometric Black & Timber Pendant Light",
-                "category": "Hanging Lights",
-                "type": "Cage Pendant",
-                "desc": "Black metal cylindrical geometric cage pendant with natural turned timber accents and warm inner glass hurricane tube.",
-                "img": "photos/3. Hanging Lights/geometric-black-timber-pendant-rfch80032-1p.jpeg"
-        },
-        {
-                "id": 59,
-                "name": "RFCH80029 Gold Geometric Cage Pendant Light",
-                "category": "Hanging Lights",
-                "type": "Gold Pendant",
-                "desc": "Polished satin gold chevron geometric cage pendant light featuring amber glass hurricane sleeve and exposed warm filament bulb.",
-                "img": "photos/3. Hanging Lights/gold-geometric-cage-pendant-rfch80029.jpeg"
-        },
-        {
-                "id": 60,
-                "name": "RFC230014-1P Curved Diamond Lattice Pendant Light",
-                "category": "Hanging Lights",
-                "type": "Cage Pendant",
-                "desc": "Modern matte black pendant light featuring curved criss-cross diamond ribbon cage, timber finial, and amber glass cylinder.",
-                "img": "photos/3. Hanging Lights/curved-lattice-pendant-rfc230014-1p.jpeg"
-        },
-        {
-                "id": 61,
-                "name": "RFC230015-1P Mandala Cutout Black Pendant Light",
-                "category": "Hanging Lights",
-                "type": "Designer Pendant",
-                "desc": "Artistic matte black cylindrical pendant with laser-cut floral mandala pattern, crystal neck spacer, and amber glass insert.",
-                "img": "photos/3. Hanging Lights/mandala-cutout-pendant-rfc230015-1p.jpeg"
-        },
-        {
-                "id": 62,
-                "name": "TRONIC Flame Retardant Single-Core Building Wire (1.5mm² / 2.5mm²)",
-                "category": "Electrical Wires & Cables",
-                "type": "Building Wire",
-                "desc": "High-conductivity pure copper 90m coils with flame-retardant PVC insulation. Ideal for residential & commercial conduit wiring.",
-                "img": "photos/8. Electrical Wires and Cables/tronic-single-core-building-wire-coils.jpeg"
-        },
-        {
-                "id": 63,
-                "name": "Heavy-Duty PVC Conduit Fittings & Pattress Boxes",
-                "category": "Electrical Wires & Cables",
-                "type": "Conduit & Enclosures",
-                "desc": "Complete conduit accessories set: circular junction boxes (2-way & 4-way), switch/socket pattress boxes, and inspection elbows.",
-                "img": "photos/8. Electrical Wires and Cables/pvc-conduit-fittings-junction-pattress-boxes.jpeg"
-        },
-        {
-                "id": 64,
-                "name": "HTG Single-Core PVC Insulated Building Wire Coils",
-                "category": "Electrical Wires & Cables",
-                "type": "Building Wire",
-                "desc": "Certified HTG copper conduit cables in standard 1.5mm² lighting and 2.5mm² power socket sizes. 90m rolls in red and black.",
-                "img": "photos/8. Electrical Wires and Cables/htg-single-core-electrical-building-wire.jpeg"
-        },
-        {
-                "id": 65,
-                "name": "Masai Cables FRLS Domestic Wiring Cable (1.5mm² / 2.5mm²)",
-                "category": "Electrical Wires & Cables",
-                "type": "FRLS Cable",
-                "desc": "Flame Retardant Low Smoke (FRLS) domestic copper wiring cables. 90m coils available in Red, Blue, Black, and Earth Green/Yellow.",
-                "img": "photos/8. Electrical Wires and Cables/masai-cables-frls-domestic-wire-rolls.jpeg"
-        },
-        {
-                "id": 66,
-                "name": "Masai Cables 6.0mm² Heavy-Duty Cooker & Mains Cable",
-                "category": "Electrical Wires & Cables",
-                "type": "Heavy-Duty Cable",
-                "desc": "6.0 SQ. MM 90m high-amp copper cable rated 450/750V for electric cookers, instant water heaters, and main distribution boards.",
-                "img": "photos/8. Electrical Wires and Cables/masai-cables-6mm-heavy-duty-frls-cable.jpeg"
-        },
-        {
-                "id": 67,
-                "name": "ASL (Ramco Group) 1.5mm² Flame Retardant Building Wire",
-                "category": "Electrical Wires & Cables",
-                "type": "Building Wire",
-                "desc": "KEBS & IEC standard certified 1.5mm² pure copper conduit wire by ASL Ramco Group for lighting circuits and switches.",
-                "img": "photos/8. Electrical Wires and Cables/asl-ramco-1-5mm-flame-retardant-wire.jpeg"
-        },
-        {
-                "id": 68,
-                "name": "Coast Cables 1.5mm² KEBS-Approved Conduit Wire",
-                "category": "Electrical Wires & Cables",
-                "type": "Building Wire",
-                "desc": "KEBS approved 1.5mm² copper domestic electrical wire by Coast Cables Ltd. High insulation resistance and durable PVC coating.",
-                "img": "photos/8. Electrical Wires and Cables/coast-cables-1-5mm-kebs-approved-wire.jpeg"
+        // --------------------------------------------------------------------
+        // 1. THREE.JS AMBIENT 3D LIGHTING & ORBITAL CHANDELIER
+        // --------------------------------------------------------------------
+        let scene, camera, renderer, crystalGroup, particles;
+        let ambientLightColor = 0xF5B800; // Default warm gold
+
+        function initThreeScene() {
+            const container = document.getElementById('three-hero-container');
+            if (!container) return;
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 18;
+
+            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Lighting setup
+            const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+            scene.add(ambient);
+
+            const pointLight = new THREE.PointLight(ambientLightColor, 2.5, 50);
+            pointLight.position.set(5, 5, 10);
+            scene.add(pointLight);
+
+            // Create Chandelier / Architectural Geometry
+            crystalGroup = new THREE.Group();
+
+            // Concentric luxury rings (simulating orbital ring chandelier)
+            const ringGeom1 = new THREE.TorusGeometry(7, 0.18, 16, 100);
+            const ringGeom2 = new THREE.TorusGeometry(4.5, 0.14, 16, 100);
+            const ringGeom3 = new THREE.TorusGeometry(2.2, 0.1, 16, 100);
+
+            const ringMat = new THREE.MeshStandardMaterial({
+                color: ambientLightColor,
+                metalness: 0.9,
+                roughness: 0.2,
+                emissive: ambientLightColor,
+                emissiveIntensity: 0.25
+            });
+
+            const ring1 = new THREE.Mesh(ringGeom1, ringMat);
+            const ring2 = new THREE.Mesh(ringGeom2, ringMat);
+            const ring3 = new THREE.Mesh(ringGeom3, ringMat);
+
+            ring1.rotation.x = Math.PI / 3;
+            ring2.rotation.x = -Math.PI / 4;
+            ring3.rotation.y = Math.PI / 4;
+
+            crystalGroup.add(ring1);
+            crystalGroup.add(ring2);
+            crystalGroup.add(ring3);
+
+            // Sparkling Light Particles
+            const particleCount = 200;
+            const particleGeom = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 35;
+                positions[i + 1] = (Math.random() - 0.5) * 25;
+                positions[i + 2] = (Math.random() - 0.5) * 20;
+            }
+
+            particleGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const particleMat = new THREE.PointsMaterial({
+                color: ambientLightColor,
+                size: 0.2,
+                transparent: true,
+                opacity: 0.8
+            });
+
+            particles = new THREE.Points(particleGeom, particleMat);
+            scene.add(particles);
+            scene.add(crystalGroup);
+
+            // Resize listener
+            window.addEventListener('resize', onWindowResize, false);
+            animate();
         }
-];
 
-        const WHATSAPP_NUMBER = "254721647578"; // Placeholder
+        function onWindowResize() {
+            const container = document.getElementById('three-hero-container');
+            if (!container || !renderer || !camera) return;
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
 
-        // Generate Product Card HTML
-        function generateProductCard(product) {
-            const waText = encodeURIComponent(`Hello Ripple P Electricals, I would like to enquire about ${product.name}.`);
-            const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+        function animate() {
+            requestAnimationFrame(animate);
+            if (crystalGroup) {
+                crystalGroup.rotation.y += 0.003;
+                crystalGroup.rotation.x += 0.001;
+            }
+            if (particles) {
+                particles.rotation.y -= 0.0008;
+            }
+            if (renderer && scene && camera) {
+                renderer.render(scene, camera);
+            }
+        }
 
-            return `
-                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-shadow flex flex-col group">
-                    <div class="h-56 bg-gray-100 overflow-hidden relative">
+        // --------------------------------------------------------------------
+        // 2. AMBIENT LIGHTING TEMPERATURE SWITCHER
+        // --------------------------------------------------------------------
+        function setLightingTemp(type) {
+            const label = document.getElementById('current-temp-label');
+            const aura = document.getElementById('hero-glow-aura');
+            const btns = document.querySelectorAll('.temp-btn');
+
+            btns.forEach(b => {
+                b.className = "temp-btn py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-white/5 text-gray-400 hover:text-white border border-white/10";
+            });
+
+            let newColorHex = 0xF5B800;
+
+            if (type === 'warm') {
+                newColorHex = 0xF5B800;
+                label.innerText = "3000K Warm Gold (Luxury Living)";
+                label.className = "text-amber-400 font-bold";
+                aura.className = "absolute -inset-4 bg-gradient-to-tr from-amber-500/25 to-yellow-600/15 rounded-3xl blur-2xl transition-all duration-700 pointer-events-none";
+                document.getElementById('btn-temp-warm').className = "temp-btn py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/50 shadow-sm shadow-amber-500/20";
+            } else if (type === 'neutral') {
+                newColorHex = 0xFFFFFF;
+                label.innerText = "4000K Pure White (Gallery & Modern)";
+                label.className = "text-gray-100 font-bold";
+                aura.className = "absolute -inset-4 bg-gradient-to-tr from-gray-200/20 to-gray-400/10 rounded-3xl blur-2xl transition-all duration-700 pointer-events-none";
+                document.getElementById('btn-temp-neutral').className = "temp-btn py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-white/20 text-white border border-white/50 shadow-sm shadow-white/20";
+            } else if (type === 'cool') {
+                newColorHex = 0x7DD3FC;
+                label.innerText = "6500K Cool Daylight (Commercial & Crisp)";
+                label.className = "text-sky-300 font-bold";
+                aura.className = "absolute -inset-4 bg-gradient-to-tr from-sky-500/25 to-blue-600/15 rounded-3xl blur-2xl transition-all duration-700 pointer-events-none";
+                document.getElementById('btn-temp-cool').className = "temp-btn py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-500/50 shadow-sm shadow-sky-500/20";
+            }
+
+            // Update Three.js materials
+            if (crystalGroup) {
+                crystalGroup.traverse((child) => {
+                    if (child.isMesh && child.material) {
+                        child.material.color.setHex(newColorHex);
+                        child.material.emissive.setHex(newColorHex);
+                    }
+                });
+            }
+            if (particles && particles.material) {
+                particles.material.color.setHex(newColorHex);
+            }
+        }
+
+        // --------------------------------------------------------------------
+        // 3. HERO SHOWCASE SWITCHER
+        // --------------------------------------------------------------------
+        const heroFeatures = [
+            {
+                title: "RFCH20055-500 Grand Gold Chandelier",
+                dim: "Diameter 500mm • Multi-Tier K9 Prisms",
+                img: "photos/1. Chandeliers/crystal-round-gold-chandelier-rfch20055-500.jpeg",
+                wa: "RFCH20055-500 Grand Gold Chandelier"
+            },
+            {
+                title: "VIP Gold Luxury Modular Switch & Socket",
+                dim: "Tempered Scratch-Resistant Glass • 13A Twin",
+                img: "photos/4. Sockets and Switches VIP/luxury-metallic-dual-socket-switches.jpeg",
+                wa: "VIP Gold Modular Dual Socket Switch"
+            },
+            {
+                title: "Architectural 48V Magnetic Track Spotlight",
+                dim: "Low-Voltage Track System • Cylindrical Pendant Spotlight",
+                img: "photos/5. Magnetic Track Lights and Aluminium Profiles/magnetic-track-cylindrical-pendant-spotlight.jpeg",
+                wa: "Architectural Magnetic Track Cylindrical Spotlight"
+            }
+        ];
+
+        function switchHeroFeature(index) {
+            const feat = heroFeatures[index];
+            const img = document.getElementById('hero-feature-img');
+            const title = document.getElementById('hero-feature-title');
+            const dim = document.getElementById('hero-feature-dim');
+
+            img.style.opacity = 0;
+            setTimeout(() => {
+                img.src = feat.img;
+                title.innerText = feat.title;
+                dim.innerText = feat.dim;
+                img.style.opacity = 1;
+            }, 200);
+        }
+
+        // --------------------------------------------------------------------
+        // 4. CONTRACTOR BoQ ESTIMATOR
+        // --------------------------------------------------------------------
+        let currentBoqType = "Maisonette / Villa";
+
+        function selectBoqType(type) {
+            const btns = document.querySelectorAll('.boq-type-btn');
+            btns.forEach(b => {
+                b.className = "boq-type-btn py-2 px-3 rounded-lg text-xs font-semibold border border-white/10 bg-white/5 text-gray-400 hover:text-white transition text-center";
+            });
+            event.target.className = "boq-type-btn py-2 px-3 rounded-lg text-xs font-semibold border border-rp-gold bg-rp-gold/10 text-rp-gold transition text-center";
+
+            if (type === 'mansion') {
+                currentBoqType = "Maisonette / Villa";
+                setBoqValues(3, 45, 16, 8);
+            } else if (type === 'apartment') {
+                currentBoqType = "Apartment Unit";
+                setBoqValues(1, 20, 6, 4);
+            } else if (type === 'commercial') {
+                currentBoqType = "Office / Commercial Space";
+                setBoqValues(2, 60, 24, 12);
+            } else {
+                currentBoqType = "Custom BoQ";
+            }
+            updateBoqCalc();
+        }
+
+        function setBoqValues(chandeliers, sockets, tracks, cables) {
+            document.getElementById('boq-range-chandeliers').value = chandeliers;
+            document.getElementById('boq-range-sockets').value = sockets;
+            document.getElementById('boq-range-tracks').value = tracks;
+            document.getElementById('boq-range-cables').value = cables;
+        }
+
+        function updateBoqCalc() {
+            const ch = document.getElementById('boq-range-chandeliers').value;
+            const so = document.getElementById('boq-range-sockets').value;
+            const tr = document.getElementById('boq-range-tracks').value;
+            const ca = document.getElementById('boq-range-cables').value;
+
+            document.getElementById('boq-val-chandeliers').innerText = `${ch} Unit(s)`;
+            document.getElementById('boq-val-sockets').innerText = `${so} Plates`;
+            document.getElementById('boq-val-tracks').innerText = `${tr} Meters`;
+            document.getElementById('boq-val-cables').innerText = `${ca} Rolls`;
+        }
+
+        function submitBoqEstimate() {
+            const name = document.getElementById('boq-client-name').value.trim() || 'Valued Client';
+            const location = document.getElementById('boq-client-location').value.trim() || 'Nairobi';
+            const ch = document.getElementById('boq-range-chandeliers').value;
+            const so = document.getElementById('boq-range-sockets').value;
+            const tr = document.getElementById('boq-range-tracks').value;
+            const ca = document.getElementById('boq-range-cables').value;
+
+            let msg = `*ELECTRICAL & LIGHTING BoQ QUOTE REQUEST*\n`;
+            msg += `• *Client / Contractor:* ${name}\n`;
+            msg += `• *Site Location:* ${location}\n`;
+            msg += `• *Project Type:* ${currentBoqType}\n\n`;
+            msg += `*ESTIMATED BILL OF QUANTITIES:*\n`;
+            msg += `1. Centerpiece Chandeliers: ${ch} unit(s)\n`;
+            msg += `2. VIP Sockets & Switches: ${so} plates\n`;
+            msg += `3. Magnetic Track Lighting: ${tr} meters\n`;
+            msg += `4. Building House Cables: ${ca} roll(s)\n\n`;
+            msg += `Please send me wholesale trade pricing and stock availability from your Duruma Road showroom.`;
+
+            const waUrl = `https://wa.me/254721647578?text=${encodeURIComponent(msg)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // --------------------------------------------------------------------
+        // 5. PRODUCT CATALOG ENGINE (50+ PRODUCTS)
+        // --------------------------------------------------------------------
+        let activeCategory = 'all';
+
+        function renderCatalog(items) {
+            const grid = document.getElementById('product-grid');
+            const noResults = document.getElementById('no-results-msg');
+            grid.innerHTML = '';
+
+            if (items.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            items.forEach(product => {
+                const waText = encodeURIComponent(`Hello Ripple P Electricals, I would like to inquire about price and availability for: ${product.name}`);
+                const waLink = `https://wa.me/254721647578?text=${waText}`;
+
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-2xl overflow-hidden flex flex-col group";
+                card.innerHTML = `
+                    <div class="aspect-[4/3] bg-black/40 overflow-hidden relative cursor-pointer" onclick="openProductModal(${product.id})">
                         <img src="${product.img}" alt="${product.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 left-3 bg-rp-black text-rp-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">${product.category}</span>
+                        <span class="absolute top-3 left-3 bg-rp-obsidian/80 backdrop-blur-md text-rp-gold text-[10px] font-bold px-2 py-0.5 rounded border border-rp-gold/30 uppercase tracking-wider">${product.category}</span>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-rp-gold text-rp-obsidian text-xs font-bold px-3 py-1.5 rounded-lg shadow"><i class="fas fa-eye mr-1"></i> Inspect</span>
+                        </div>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
-                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wide">${product.type}</div>
-                        <h3 class="text-lg font-bold text-rp-black mb-2 line-clamp-1">${product.name}</h3>
-                        <p class="text-sm text-gray-600 mb-6 flex-grow line-clamp-2">${product.desc}</p>
+                        <div class="text-[10px] text-gray-400 mb-1 uppercase tracking-wider font-semibold">${product.type || product.category}</div>
+                        <h3 class="text-base font-bold text-white mb-2 line-clamp-1 group-hover:text-rp-gold transition">${product.name}</h3>
+                        <p class="text-xs text-gray-400 mb-5 flex-grow line-clamp-2 leading-relaxed">${product.desc}</p>
                         
-                        <div class="flex flex-col gap-2 mt-auto">
-                            <a href="tel:+254721647578" class="w-full bg-rp-grey text-rp-black text-center font-semibold py-2 rounded border border-gray-300 hover:border-rp-black transition-colors text-sm flex items-center justify-center gap-2">
-                                <i class="fas fa-phone-alt text-xs"></i> Call Showroom
-                            </a>
-                            <a href="${waLink}" target="_blank" class="w-full bg-[#25D366] text-white text-center font-bold py-2 rounded hover:bg-[#1ebd5b] transition-colors text-sm flex items-center justify-center gap-2">
-                                <i class="fab fa-whatsapp text-lg"></i> WhatsApp
+                        <div class="grid grid-cols-2 gap-2 mt-auto pt-3 border-t border-white/10">
+                            <button onclick="openProductModal(${product.id})" class="w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white text-xs font-semibold border border-white/10 transition text-center">
+                                Details
+                            </button>
+                            <a href="${waLink}" target="_blank" class="w-full py-2 rounded-lg bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold transition flex items-center justify-center gap-1.5">
+                                <i class="fab fa-whatsapp"></i> Inquire
                             </a>
                         </div>
                     </div>
-                </div>
-            `;
-        }
-
-        // Data Validation & Input Sanitization
-        function sanitizeInput(str, maxLength = 500) {
-            if (!str || typeof str !== 'string') return '';
-            return str
-                .slice(0, maxLength)
-                .replace(/[<>]/g, '') // Strip potential markup tags
-                .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Strip ASCII control characters
-                .trim();
-        }
-
-        // Rate Limiting Protection (Client-side flood control)
-        let lastSubmissionTime = 0;
-        const SUBMISSION_COOLDOWN_MS = 8000; // 8 seconds cooldown between submissions
-
-        function isRateLimited() {
-            const now = Date.now();
-            if (now - lastSubmissionTime < SUBMISSION_COOLDOWN_MS) {
-                const waitSec = Math.ceil((SUBMISSION_COOLDOWN_MS - (now - lastSubmissionTime)) / 1000);
-                alert(`Please wait ${waitSec} second(s) before sending another request.`);
-                return true;
-            }
-            lastSubmissionTime = now;
-            return false;
-        }
-
-        // Anti-Bot & Sanitized Form Handlers
-        function handleWholesaleSubmit(e) {
-            e.preventDefault();
-
-            // Rate limiting check
-            if (isRateLimited()) return false;
-
-            // Check honeypot trap (bots fill hidden fields, humans do not)
-            const trap = document.getElementById('ws-trap');
-            if (trap && trap.value.trim() !== '') {
-                return false;
-            }
-
-            const name = sanitizeInput(document.getElementById('ws-name')?.value, 100);
-            const company = sanitizeInput(document.getElementById('ws-company')?.value, 100);
-            const phone = sanitizeInput(document.getElementById('ws-phone')?.value, 30);
-            const email = sanitizeInput(document.getElementById('ws-email')?.value, 100);
-            const type = sanitizeInput(document.getElementById('ws-type')?.value, 100);
-            const products = sanitizeInput(document.getElementById('ws-products')?.value, 1000);
-
-            if (!name || !phone || !products) {
-                alert('Please complete all required fields (*).');
-                return false;
-            }
-
-            let msg = `*WHOLESALE QUOTE REQUEST - Ripple P Electricals*\n`;
-            msg += `• Name: ${name}\n`;
-            if (company) msg += `• Company: ${company}\n`;
-            msg += `• Phone: ${phone}\n`;
-            if (email) msg += `• Email: ${email}\n`;
-            if (type) msg += `• Category: ${type}\n`;
-            msg += `• Requirements:\n${products}\n`;
-
-            const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-            window.open(waUrl, '_blank');
-            return false;
-        }
-
-        function handleContactSubmit(e) {
-            e.preventDefault();
-
-            // Rate limiting check
-            if (isRateLimited()) return false;
-
-            // Check honeypot trap
-            const trap = document.getElementById('contact-trap');
-            if (trap && trap.value.trim() !== '') {
-                return false;
-            }
-
-            const name = sanitizeInput(document.getElementById('contact-name')?.value, 100);
-            const phone = sanitizeInput(document.getElementById('contact-phone')?.value, 30);
-            const email = sanitizeInput(document.getElementById('contact-email')?.value, 100);
-            const message = sanitizeInput(document.getElementById('contact-msg')?.value, 1000);
-
-            if (!name || !phone || !message) {
-                alert('Please complete all required fields (*).');
-                return false;
-            }
-
-            let msg = `*NEW WEBSITE ENQUIRY - Ripple P Electricals*\n`;
-            msg += `• Name: ${name}\n`;
-            msg += `• Phone: ${phone}\n`;
-            if (email) msg += `• Email: ${email}\n`;
-            msg += `• Message:\n${message}\n`;
-
-            const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-            window.open(waUrl, '_blank');
-            return false;
-        }
-
-        // Render Products to a specific container
-        function renderProducts(containerId, items) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            container.innerHTML = items.map(generateProductCard).join('');
-        }
-
-        // Filtering logic for the Products page
-        function filterProducts(category) {
-            // Update active state on buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                if (btn.getAttribute('data-filter') === category) {
-                    btn.classList.add('bg-rp-black', 'text-rp-white');
-                    btn.classList.remove('bg-white', 'text-rp-black', 'border', 'border-gray-300');
-                } else {
-                    btn.classList.remove('bg-rp-black', 'text-rp-white');
-                    btn.classList.add('bg-white', 'text-rp-black', 'border', 'border-gray-300');
-                }
+                `;
+                grid.appendChild(card);
             });
-
-            // Filter data
-            let filtered = productsData;
-            if (category !== 'All') {
-                filtered = productsData.filter(p => p.category === category);
-            }
-            renderProducts('full-products-grid', filtered);
         }
 
-        // Simple Single Page App Routing
-        function navigate(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
+        function filterCatalog(category) {
+            activeCategory = category;
+
+            // Update active pill UI
+            const pills = document.querySelectorAll('.cat-pill');
+            pills.forEach(p => {
+                p.className = "cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-card text-gray-300 hover:text-white border border-white/10";
             });
+            if (event && event.target) {
+                event.target.className = "cat-pill px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition bg-rp-gold text-rp-obsidian border border-rp-gold";
+            }
+
+            if (category === 'all') {
+                renderCatalog(productsData);
+            } else {
+                const filtered = productsData.filter(p => p.category === category);
+                renderCatalog(filtered);
+            }
+        }
+
+        function handleCatalogSearch() {
+            const query = document.getElementById('catalog-search').value.toLowerCase().trim();
+            const filtered = productsData.filter(p => {
+                const matchCat = activeCategory === 'all' || p.category === activeCategory;
+                const matchText = p.name.toLowerCase().includes(query) || 
+                                  (p.desc && p.desc.toLowerCase().includes(query)) ||
+                                  (p.type && p.type.toLowerCase().includes(query));
+                return matchCat && matchText;
+            });
+            renderCatalog(filtered);
+        }
+
+        function updateCategoryCounts() {
+            if (typeof productsData === 'undefined') return;
+            document.getElementById('count-all').innerText = productsData.length;
             
-            // Show target page
-            const target = document.getElementById('page-' + pageId);
-            if(target) {
-                target.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            const countByCat = (cat) => productsData.filter(p => p.category === cat).length;
+            document.getElementById('count-chandeliers').innerText = countByCat('Chandeliers');
+            document.getElementById('count-wall').innerText = countByCat('Wall Brackets');
+            document.getElementById('count-hanging').innerText = countByCat('Hanging Lights');
+            document.getElementById('count-sockets').innerText = countByCat('Sockets & Switches VIP');
+            document.getElementById('count-tracks').innerText = countByCat('Magnetic Track & Profiles');
+            document.getElementById('count-panels').innerText = countByCat('Panel Lights');
+            document.getElementById('count-lamps').innerText = countByCat('Decorative & Table Lamps');
+            document.getElementById('count-cables').innerText = countByCat('Electrical Wires & Cables');
+        }
 
-            // Update Nav styling
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('text-rp-gold');
-                link.classList.add('text-rp-grey');
-                if(link.innerText.toLowerCase().includes(pageId) || (pageId === 'home' && link.innerText === 'Home')) {
-                    link.classList.add('text-rp-gold');
-                    link.classList.remove('text-rp-grey');
-                }
+        // --------------------------------------------------------------------
+        // 6. PRODUCT MODAL
+        // --------------------------------------------------------------------
+        function openProductModal(id) {
+            const product = productsData.find(p => p.id === id);
+            if (!product) return;
+
+            document.getElementById('modal-img').src = product.img;
+            document.getElementById('modal-category').innerText = product.category;
+            document.getElementById('modal-title').innerText = product.name;
+            document.getElementById('modal-desc').innerText = product.desc;
+
+            const waText = encodeURIComponent(`Hello Ripple P Electricals, I am inquiring about specifications and trade price for ${product.name}`);
+            document.getElementById('modal-wa-link').href = `https://wa.me/254721647578?text=${waText}`;
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProductModal();
+        });
+
+        // Mobile drawer toggle
+        const toggleBtn = document.getElementById('mobile-toggle');
+        const drawer = document.getElementById('mobile-drawer');
+        if (toggleBtn && drawer) {
+            toggleBtn.addEventListener('click', () => {
+                drawer.classList.toggle('hidden');
             });
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => drawer.classList.add('hidden'));
+            });
+        }
 
-            // Close mobile menu if open
-            const mobileMenu = document.getElementById('mobile-menu');
-            if(!mobileMenu.classList.contains('hidden')){
-                mobileMenu.classList.add('hidden');
+        // Live Open Hours indicator
+        function updateShowroomStatus() {
+            const statusEl = document.getElementById('showroom-status');
+            const now = new Date();
+            // Nairobi is UTC+3
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const nairobiTime = new Date(utc + (3600000 * 3));
+            const day = nairobiTime.getDay(); // 0 = Sunday
+            const hour = nairobiTime.getHours();
+
+            if (day === 0) {
+                statusEl.innerText = "Showroom Closed on Sunday (WhatsApp Open)";
+                statusEl.className = "text-amber-400 font-medium";
+            } else if (hour >= 8 && hour < 18) {
+                statusEl.innerText = "Showroom Open (Duruma Road Counter)";
+                statusEl.className = "text-emerald-400 font-medium";
+            } else {
+                statusEl.innerText = "Showroom Closed (WhatsApp Quotes Active)";
+                statusEl.className = "text-gray-400 font-medium";
             }
         }
 
-        // Mobile Menu Toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+        // Reveal floating WhatsApp button on scroll
+        window.addEventListener('scroll', () => {
+            const wa = document.getElementById('floating-wa');
+            if (!wa) return;
+            if (window.scrollY > 250) {
+                wa.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+                wa.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                wa.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+                wa.classList.remove('opacity-100', 'translate-y-0');
+            }
         });
 
-        // Cookie Consent Logic
-        function checkCookieConsent() {
-            const consent = localStorage.getItem('rp_cookie_consent');
-            const banner = document.getElementById('rp-cookie-banner');
-            if (consent && banner) {
-                banner.style.display = 'none';
-            }
-        }
-
-        function dismissCookieConsent(choice) {
-            localStorage.setItem('rp_cookie_consent', choice);
-            const banner = document.getElementById('rp-cookie-banner');
-            if (banner) {
-                banner.style.opacity = '0';
-                banner.style.transform = 'translateY(20px)';
-                setTimeout(() => { banner.style.display = 'none'; }, 300);
-            }
-        }
-
-        // Initialize on load
+        // Init on DOM ready
         window.addEventListener('DOMContentLoaded', () => {
-            // Check cookie consent
-            checkCookieConsent();
-            // Render 8 featured products on Home
-            renderProducts('home-products-grid', productsData.slice(0, 8));
-            // Render all on Products page
-            renderProducts('full-products-grid', productsData);
-            // Default highlight Nav
-            navigate('home');
+            if (typeof productsData !== 'undefined') {
+                renderCatalog(productsData);
+                updateCategoryCounts();
+            }
+            initThreeScene();
+            updateShowroomStatus();
         });
-
     </script>
-
-    <!-- Cookie Consent Banner -->
-    <div id="rp-cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-6 md:right-auto md:max-w-md z-[99999] bg-[#161616] text-rp-white border border-gray-800 rounded-xl p-5 shadow-2xl transition-all duration-300 transform translate-y-0 flex flex-col gap-3">
-        <div class="flex items-start gap-3">
-            <div class="w-10 h-10 rounded-lg bg-rp-gold/20 flex items-center justify-center flex-shrink-0 text-rp-gold text-lg">
-                <i class="fas fa-cookie-bite"></i>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm text-rp-white mb-1">Cookie &amp; Privacy Notice</h4>
-                <p class="text-xs text-gray-300 leading-relaxed">
-                    We use cookies and local storage to give you the best experience on Ripple P Electricals, remember your preferences, and optimize site speed.
-                </p>
-            </div>
-        </div>
-        <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800/80">
-            <button onclick="dismissCookieConsent('declined')" class="px-3.5 py-1.5 rounded-md text-xs font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
-                Decline
-            </button>
-            <button onclick="dismissCookieConsent('accepted')" class="px-4 py-1.5 rounded-md text-xs font-bold bg-rp-gold text-rp-black hover:bg-rp-gold-hover transition-colors shadow-sm">
-                Accept Cookies
-            </button>
-        </div>
-    </div>
 </body>
 </html>
