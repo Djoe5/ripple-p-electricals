@@ -1,0 +1,10 @@
+.git
+.gitignore
+README.md
+index_v1_backup.html
+index_v2.html
+vercel.json
+.htaccess
+photos/_backup_originals
+google_business_assets
+wrangler.jsonc
